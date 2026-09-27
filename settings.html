@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Settings | AI Makeup Analysis Guide</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet" href="assets/css/settings.css">
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <div>
+                    <h2>AI Makeup</h2>
+                    <span>Analysis Guide</span>
+                </div>
+            </div>
+
+            <nav class="navigation" aria-label="Main navigation">
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="analysis.html">
+                    <i class="fa-solid fa-camera"></i>
+                    <span>Analysis</span>
+                </a>
+
+                <a href="recommendation.html">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <span>Recommendations</span>
+                </a>
+
+                <a href="tutorials.html">
+                    <i class="fa-solid fa-video"></i>
+                    <span>Tutorials</span>
+                </a>
+
+                <a href="history.html">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>History</span>
+                </a>
+
+                <a href="profile.html">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Profile</span>
+                </a>
+
+                <a href="settings.html" class="active" aria-current="page">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <a href="index.html" class="logout-link">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div class="mobile-brand">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>AI Makeup</span>
+                </div>
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input id="siteSearch" type="search" placeholder="Search settings..." aria-label="Search settings">
+                </div>
+
+                <div class="topbar-actions">
+
+                    <button id="themeButton" class="topbar-button" type="button" aria-label="Toggle theme">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+
+                    <button id="notificationButton" class="topbar-button" type="button" aria-label="View notifications">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+
+                    <a href="profile.html" class="user-menu" aria-label="Open profile">
+                        <img src="assets/images/profile.jpg" alt="Profile picture">
+                        <span>Madhuri</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </a>
+
+                </div>
+            </header>
+
+            <section class="page-heading">
+                <div>
+                    <span class="eyebrow">APPLICATION SETTINGS</span>
+                    <h1>Settings</h1>
+                    <p>Manage application information, support and preferences.</p>
+                </div>
+            </section>
+
+            <section class="settings-layout">
+
+                <article class="settings-card application-card">
+
+                    <div class="card-heading">
+                        <div class="heading-icon">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </div>
+
+                        <div>
+                            <h2>About Application</h2>
+                            <p>Information about AI Makeup Analysis Guide.</p>
+                        </div>
+                    </div>
+
+                    <div class="application-details">
+
+                        <div class="detail-item">
+                            <span>Application</span>
+                            <strong>AI Makeup Analysis Guide</strong>
+                        </div>
+
+                        <div class="detail-item">
+                            <span>Version</span>
+                            <strong>1.0.0</strong>
+                        </div>
+
+                        <div class="detail-item">
+                            <span>Developer</span>
+                            <strong>AI Makeup Team</strong>
+                        </div>
+
+                        <div class="detail-item">
+                            <span>Project Type</span>
+                            <strong>Educational Capstone</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="card-divider"></div>
+
+                    <div class="resource-grid">
+
+                        <button class="resource-button" type="button" data-modal="privacyModal">
+                            <span class="resource-icon">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </span>
+                            <span>
+                                <strong>Privacy Policy</strong>
+                                <small>How application information is handled</small>
+                            </span>
+                            <i class="fa-solid fa-chevron-right arrow"></i>
+                        </button>
+
+                        <button class="resource-button" type="button" data-modal="termsModal">
+                            <span class="resource-icon">
+                                <i class="fa-solid fa-file-contract"></i>
+                            </span>
+                            <span>
+                                <strong>Terms &amp; Conditions</strong>
+                                <small>Application usage terms</small>
+                            </span>
+                            <i class="fa-solid fa-chevron-right arrow"></i>
+                        </button>
+
+                        <button class="resource-button" type="button" data-modal="supportModal" id="supportButton">
+                            <span class="resource-icon">
+                                <i class="fa-solid fa-headset"></i>
+                            </span>
+                            <span>
+                                <strong>Contact Support</strong>
+                                <small>Get help with the application</small>
+                            </span>
+                            <i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
+                        </button>
+
+                        <button class="resource-button" type="button" data-modal="guideModal">
+                            <span class="resource-icon">
+                                <i class="fa-solid fa-book-open"></i>
+                            </span>
+                            <span>
+                                <strong>User Guide</strong>
+                                <small>Learn how to use the application</small>
+                            </span>
+                            <i class="fa-solid fa-chevron-right arrow"></i>
+                        </button>
+
+                    </div>
+
+                </article>
+
+                <aside class="settings-card status-card">
+
+                    <div class="card-heading compact">
+                        <div class="heading-icon">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+
+                        <div>
+                            <h2>System Status</h2>
+                            <p>Current application status.</p>
+                        </div>
+                    </div>
+
+                    <div class="status-row">
+                        <div>
+                            <strong>Application</strong>
+                            <span>Core interface</span>
+                        </div>
+                        <span class="status-badge">
+                            <i class="fa-solid fa-check"></i>
+                            Active
+                        </span>
+                    </div>
+
+                    <div class="status-row">
+                        <div>
+                            <strong>Profile</strong>
+                            <span>User profile features</span>
+                        </div>
+                        <span class="status-badge">
+                            <i class="fa-solid fa-check"></i>
+                            Available
+                        </span>
+                    </div>
+
+                    <div class="status-row">
+                        <div>
+                            <strong>Theme</strong>
+                            <span>Light / dark appearance</span>
+                        </div>
+                        <span class="status-badge neutral">
+                            <i class="fa-solid fa-sliders"></i>
+                            Ready
+                        </span>
+                    </div>
+
+                </aside>
+
+            </section>
+
+            <footer class="page-footer">
+                <span>© 2026 AI Makeup Analysis Guide</span>
+                <span>Educational Capstone Project</span>
+            </footer>
+
+        </main>
+    </div>
+
+
+    <!-- Privacy Policy -->
+    <div class="modal" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+
+        <div class="modal-panel">
+
+            <div class="modal-header">
+                <div>
+                    <span class="modal-label">LEGAL INFORMATION</span>
+                    <h2 id="privacyTitle">Privacy Policy</h2>
+                </div>
+
+                <button class="close-button" type="button" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="modal-content">
+
+                <p>
+                    AI Makeup Analysis Guide is an educational application designed
+                    to provide makeup analysis, recommendations and related features.
+                </p>
+
+                <h3>Information Used by the Application</h3>
+                <p>
+                    Information entered by the user, such as profile details and
+                    preferences, may be used to provide the application's features.
+                </p>
+
+                <h3>User Control</h3>
+                <p>
+                    Users can review and update available profile information from
+                    the Profile section of the application.
+                </p>
+
+                <h3>Uploaded Images</h3>
+                <p>
+                    Images should only be uploaded when the user has the necessary
+                    permission to use them. Images should be handled according to
+                    the application's intended analysis workflow.
+                </p>
+
+                <p class="modal-note">
+                    This page describes the privacy approach for this educational
+                    capstone project and is not a substitute for a formal legal policy.
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Terms -->
+    <div class="modal" id="termsModal" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+
+        <div class="modal-panel">
+
+            <div class="modal-header">
+                <div>
+                    <span class="modal-label">APPLICATION TERMS</span>
+                    <h2 id="termsTitle">Terms &amp; Conditions</h2>
+                </div>
+
+                <button class="close-button" type="button" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="modal-content">
+
+                <p>
+                    By using AI Makeup Analysis Guide, users agree to use the
+                    application responsibly and for its intended educational purpose.
+                </p>
+
+                <h3>Acceptable Use</h3>
+
+                <ul>
+                    <li>Use the application lawfully and responsibly.</li>
+                    <li>Only upload images and information that you are permitted to use.</li>
+                    <li>Do not attempt to misuse or disrupt application features.</li>
+                    <li>Review AI-generated recommendations before acting on them.</li>
+                </ul>
+
+                <h3>Educational Purpose</h3>
+                <p>
+                    This application is developed as an educational capstone project.
+                    AI-generated beauty suggestions are informational and should not
+                    be treated as professional medical or dermatological advice.
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- User Guide -->
+    <div class="modal" id="guideModal" role="dialog" aria-modal="true" aria-labelledby="guideTitle">
+
+        <div class="modal-panel">
+
+            <div class="modal-header">
+                <div>
+                    <span class="modal-label">QUICK START</span>
+                    <h2 id="guideTitle">User Guide</h2>
+                </div>
+
+                <button class="close-button" type="button" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="guide-list">
+
+                <div class="guide-item">
+                    <span>01</span>
+                    <div>
+                        <strong>Profile</strong>
+                        <p>Update your personal information and beauty preferences.</p>
+                    </div>
+                </div>
+
+                <div class="guide-item">
+                    <span>02</span>
+                    <div>
+                        <strong>Analysis</strong>
+                        <p>Use the analysis workflow to view available makeup analysis results.</p>
+                    </div>
+                </div>
+
+                <div class="guide-item">
+                    <span>03</span>
+                    <div>
+                        <strong>Recommendations</strong>
+                        <p>Review personalized makeup suggestions based on available analysis information.</p>
+                    </div>
+                </div>
+
+                <div class="guide-item">
+                    <span>04</span>
+                    <div>
+                        <strong>Tutorials</strong>
+                        <p>Browse makeup tutorial videos available in the application.</p>
+                    </div>
+                </div>
+
+                <div class="guide-item">
+                    <span>05</span>
+                    <div>
+                        <strong>History</strong>
+                        <p>Review previously saved analysis and tutorial activity.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Contact Support -->
+    <div class="modal" id="supportModal" role="dialog" aria-modal="true" aria-labelledby="supportTitle">
+        <div class="modal-panel support-panel">
+            <div class="modal-header">
+                <div>
+                    <span class="modal-label">HELP &amp; SUPPORT</span>
+                    <h2 id="supportTitle">Contact Support</h2>
+                </div>
+                <button class="close-button" type="button" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="support-content">
+                <div class="support-icon"><i class="fa-solid fa-headset"></i></div>
+                <h3>Need help with the application?</h3>
+                <p>Use the support email below to report a problem, ask a question, or request help with the AI Makeup
+                    Analysis Guide.</p>
+                <div class="support-email">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span id="supportEmail">support@aimakeupguide.com</span>
+                    <button id="copySupportEmail" type="button" title="Copy email" aria-label="Copy support email"><i
+                            class="fa-regular fa-copy"></i></button>
+                </div>
+                <div class="support-actions">
+                    <a id="gmailSupportLink" class="primary-action" href="#" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-solid fa-paper-plane"></i> Open Gmail
+                    </a>
+                    <button id="copySupportButton" class="secondary-action" type="button">
+                        <i class="fa-regular fa-copy"></i> Copy Email
+                    </button>
+                </div>
+                <p id="copyMessage" class="copy-message" aria-live="polite"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/settings.js"></script>
+
+</body>
+
+</html>

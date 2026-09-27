@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign Up | AI Makeup Analysis Guide</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background: linear-gradient(135deg, #ff6fb5, #7b2ff7);
+
+            padding: 30px;
+
+        }
+
+        .container {
+
+            width: 100%;
+
+            max-width: 1100px;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            background: #fff;
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            box-shadow: 0 25px 60px rgba(0, 0, 0, .25);
+
+        }
+
+        .left {
+
+            background: linear-gradient(135deg, #ff4f9d, #8b5cf6);
+
+            color: #fff;
+
+            padding: 60px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+        }
+
+        .left h1 {
+
+            font-size: 42px;
+
+            margin-bottom: 20px;
+
+        }
+
+        .left p {
+
+            font-size: 17px;
+
+            line-height: 30px;
+
+            opacity: .95;
+
+        }
+
+        .left ul {
+
+            margin-top: 35px;
+
+            list-style: none;
+
+        }
+
+        .left ul li {
+
+            margin: 18px 0;
+
+            font-size: 16px;
+
+        }
+
+        .left ul li i {
+
+            margin-right: 12px;
+
+            color: #fff;
+
+        }
+
+        .right {
+
+            padding: 50px;
+
+        }
+
+        .logo {
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+            text-align: center;
+
+            color: #7b2ff7;
+
+            margin-bottom: 30px;
+
+        }
+
+        .logo span {
+
+            color: #ff4f9d;
+
+        }
+
+        h2 {
+
+            text-align: center;
+
+            margin-bottom: 10px;
+
+            color: #333;
+
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #666;
+
+            margin-bottom: 30px;
+
+            font-size: 14px;
+
+        }
+
+        .input-group {
+
+            margin-bottom: 18px;
+
+            position: relative;
+
+        }
+
+        .input-group label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-weight: 500;
+
+            color: #444;
+
+        }
+
+        .input-group input {
+
+            width: 100%;
+
+            padding: 14px 45px 14px 15px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            font-size: 15px;
+
+            transition: .3s;
+
+        }
+
+        .input-group input:focus {
+
+            border-color: #7b2ff7;
+
+            box-shadow: 0 0 10px rgba(123, 47, 247, .2);
+
+        }
+
+        .input-group i {
+
+            position: absolute;
+
+            right: 15px;
+
+            top: 45px;
+
+            color: #888;
+
+            cursor: pointer;
+
+        }
+        .input-group input::placeholder{
+color:#999;
+}
+
+.btn{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:10px;
+
+background:linear-gradient(135deg,#ff4f9d,#7b2ff7);
+
+color:#fff;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 10px 20px rgba(123,47,247,.35);
+
+}
+
+.or{
+
+text-align:center;
+
+margin:22px 0;
+
+color:#888;
+
+font-size:14px;
+
+}
+
+.social{
+
+display:flex;
+
+gap:15px;
+
+}
+
+.social button{
+
+flex:1;
+
+padding:13px;
+
+border:1px solid #ddd;
+
+background:#fff;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-size:15px;
+
+font-weight:500;
+
+transition:.3s;
+
+}
+
+.social button:hover{
+
+background:#f5f5f5;
+
+}
+
+.login{
+
+text-align:center;
+
+margin-top:25px;
+
+font-size:15px;
+
+}
+
+.login a{
+
+text-decoration:none;
+
+font-weight:600;
+
+color:#7b2ff7;
+
+}
+
+.login a:hover{
+
+text-decoration:underline;
+
+}
+
+@media(max-width:900px){
+
+.container{
+
+grid-template-columns:1fr;
+
+}
+
+.left{
+
+display:none;
+
+}
+
+.right{
+
+padding:35px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="left">
+
+            <h1>Welcome!</h1>
+
+            <p>
+                Join AI Makeup Analysis Guide and get personalized beauty insights powered by Artificial Intelligence.
+            </p>
+
+            <ul>
+
+                <li><i class="fa-solid fa-circle-check"></i> AI Skin Analysis</li>
+
+                <li><i class="fa-solid fa-circle-check"></i> Personalized Recommendations</li>
+
+                <li><i class="fa-solid fa-circle-check"></i> Beauty Progress Tracking</li>
+
+                <li><i class="fa-solid fa-circle-check"></i> Secure User Dashboard</li>
+
+            </ul>
+
+        </div>
+
+        <div class="right">
+
+            <div class="logo">
+
+                AI <span>Makeup</span>
+
+            </div>
+
+            <h2>Create Account</h2>
+
+            <p class="subtitle">
+
+                Start your beauty journey today
+
+            </p>
+
+            <form id="signupForm">
+
+                <div class="input-group">
+
+                    <label>Full Name</label>
+
+                    <input type="text" id="fullName" placeholder="Enter your full name" required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Email</label>
+
+                    <input type="email" id="email" placeholder="Enter your email" required>
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Password</label>
+
+                    <input type="password" id="password" placeholder="Minimum 8 characters" required>
+
+                    <i class="fa-solid fa-eye" id="togglePassword"></i>
+
+                </div>
+
+                <button class="btn" type="submit">
+
+                    Create Account
+
+                </button>
+
+                <div class="or">
+
+                    OR
+
+                </div>
+
+                <div class="social">
+
+                    <button type="button">
+
+                        <i class="fab fa-google"></i>
+
+                        Google
+
+                    </button>
+
+                    <button type="button">
+
+                        <i class="fab fa-github"></i>
+
+                        GitHub
+
+                    </button>
+
+                </div>
+
+                <div class="login">
+
+                    Already have an account?
+
+                    <a href="login.html">
+
+                        Login
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+    <script>
+        const signupForm = document.getElementById("signupForm");
+        const togglePassword = document.getElementById("togglePassword");
+        const passwordInput = document.getElementById("password");
+
+        // Show / Hide Password
+        togglePassword.addEventListener("click", () => {
+            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+            passwordInput.setAttribute("type", type);
+
+            togglePassword.classList.toggle("fa-eye");
+            togglePassword.classList.toggle("fa-eye-slash");
+        });
+
+        // Signup
+        signupForm.addEventListener("submit", async (e) => {
+
+            e.preventDefault();
+
+            const button = document.querySelector(".btn");
+
+            button.disabled = true;
+            button.innerHTML = "Creating Account...";
+
+            const userData = {
+                fullName: document.getElementById("fullName").value.trim(),
+                email: document.getElementById("email").value.trim(),
+                password: document.getElementById("password").value
+            };
+
+            try {
+
+                const response = await fetch("http://localhost:5000/api/auth/signup", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify(userData)
+
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+
+                    alert("🎉 Account Created Successfully!");
+
+                    localStorage.setItem("token", data.token);
+                    localStorage.setItem("user", JSON.stringify(data.user));
+
+                    window.location.href = "dashboard.html";
+
+                } else {
+
+                    alert(data.message);
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert("Unable to connect to the server.");
+
+            }
+
+            button.disabled = false;
+            button.innerHTML = "Create Account";
+
+        });
+    </script>
+    <link rel="stylesheet" href="assets/css/signup.css">
+    <script src="assets/js/signup.js"></script>
+    </body>
+    
+    </html>

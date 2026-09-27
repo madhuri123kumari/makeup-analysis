@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>History | AI Makeup Analysis Guide</title>
+
+    <link rel="stylesheet" href="assets/css/history.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <style id="history-image-fix">
+        .history-image,
+        .comparison-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .history-image img,
+        .comparison-card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .history-image.image-missing,
+        .comparison-card.image-missing {
+            background: linear-gradient(135deg, #f8edf8, #eee9fb);
+        }
+
+        .image-fallback {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+            color: #777;
+            padding: 20px;
+        }
+
+        .image-missing .image-fallback {
+            display: flex;
+        }
+
+        .image-fallback i {
+            font-size: 34px;
+            color: #c73f91;
+        }
+
+        .image-fallback span {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .analysis-image {
+            transition: transform .35s ease, opacity .2s ease;
+        }
+
+        .history-card:hover .analysis-image,
+        .comparison-card:hover .analysis-image {
+            transform: scale(1.03);
+        }
+    </style>
+
+    <style id="dynamic-history-styles">
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .clear-history-btn {
+            border: 1px solid #fecaca;
+            background: #fff7f7;
+            color: #dc2626;
+            padding: 11px 16px;
+            border-radius: 12px;
+            font: 600 12px Poppins, sans-serif;
+            cursor: pointer
+        }
+
+        .clear-history-btn:hover {
+            background: #fee2e2
+        }
+
+        .history-empty {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 55px 25px;
+            border: 1px dashed #e5d5ee;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #fffafe, #f8f4ff)
+        }
+
+        .history-empty i {
+            font-size: 42px;
+            color: #c73f91;
+            margin-bottom: 14px
+        }
+
+        .history-empty h3 {
+            margin: 0 0 8px
+        }
+
+        .history-empty p {
+            margin: 0 auto 20px;
+            max-width: 520px;
+            color: #777;
+            font-size: 13px;
+            line-height: 1.7
+        }
+
+        .history-empty a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 17px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ec4899, #7c3aed);
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 12px
+        }
+
+        .history-card .analysis-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .comparison-empty {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 30px;
+            color: #777
+        }
+
+        .analysis-detail-body {
+            text-align: left;
+            max-height: 55vh;
+            overflow: auto
+        }
+
+        .detail-image {
+            width: 100%;
+            max-height: 280px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin-bottom: 16px
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 9px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 13px
+        }
+
+        .detail-description {
+            color: #666;
+            line-height: 1.7;
+            margin: 12px 0;
+            font-size: 13px
+        }
+
+        @media(max-width:700px) {
+            .header-actions {
+                flex-wrap: wrap
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!--=========================
+            SIDEBAR
+    ==========================-->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                <h2>AI Makeup</h2>
+
+            </div>
+
+            <ul class="menu">
+
+                <li>
+
+                    <a href="dashboard.html">
+
+                        <i class="fa-solid fa-house"></i>
+
+                        <span>Dashboard</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="analysis.html">
+
+                        <i class="fa-solid fa-camera"></i>
+
+                        <span>Analysis</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="recommendation.html">
+
+                        <i class="fa-solid fa-gift"></i>
+
+                        <span>Recommendations</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="tutorials.html">
+
+                        <i class="fa-solid fa-circle-play"></i>
+
+                        <span>Tutorials</span>
+
+                    </a>
+
+                </li>
+
+                <li class="active">
+
+                    <a href="history.html">
+
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+
+                        <span>History</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="profile.html">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <span>Profile</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="settings.html">
+
+                        <i class="fa-solid fa-gear"></i>
+
+                        <span>Settings</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="index.html">
+
+                        <i class="fa-solid fa-right-from-bracket"></i>
+
+                        <span>Logout</span>
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </aside>
+
+        <!--=========================
+            MAIN CONTENT
+    ==========================-->
+
+        <main class="main">
+
+            <!--=========================
+                TOPBAR
+        ==========================-->
+
+            <header class="topbar">
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input type="text" placeholder="Search previous analyses...">
+
+                </div>
+
+                <div class="top-icons">
+
+                    <button class="theme-toggle" aria-label="Toggle Theme">
+
+                        <i class="fa-solid fa-moon"></i>
+
+                    </button>
+
+                    <button class="notification-btn" aria-label="Notifications">
+
+                        <i class="fa-solid fa-bell"></i>
+
+                    </button>
+
+                    <img src="assets/images/profile.jpg" alt="Profile">
+
+                </div>
+
+            </header>
+
+            <!--=========================
+                PAGE HEADER
+        ==========================-->
+
+            <section class="page-header">
+
+                <div>
+
+                    <h1>Analysis History</h1>
+
+                    <p>
+
+                        View, manage and compare all your previous
+                        AI makeup analyses in one place.
+
+                    </p>
+
+                </div>
+
+                <div class="header-actions">
+                    <button class="export-btn" type="button"><i class="fa-solid fa-download"></i> Export
+                        History</button>
+                    <button class="clear-history-btn" type="button"><i class="fa-solid fa-trash-can"></i> Clear
+                        History</button>
+                </div>
+
+            </section>
+
+            <!--=========================
+                STATISTICS
+        ==========================-->
+
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-camera"></i>
+
+                    <h2 id="totalAnalyses">0</h2>
+
+                    <p>Total Analyses</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <h2 id="highestScore">0%</h2>
+
+                    <p>Highest Beauty Score</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <h2 id="monthlyAnalyses">0</h2>
+
+                    <p>This Month</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <h2 id="overallImprovement">0%</h2>
+
+                    <p>Overall Improvement</p>
+
+                </div>
+
+            </section>
+
+            <!--=========================
+                PART 2 STARTS HERE
+        ==========================-->
+            <!--=========================
+                                ANALYSIS HISTORY
+                        ==========================-->
+
+            <section class="history-grid" id="historyGrid" aria-live="polite">
+                <!-- History cards are rendered by history.js from saved analysis records. -->
+            </section>
+
+            <!--=========================
+                                PART 3 STARTS HERE
+                        ==========================-->
+            <!--=========================
+                                                COMPARISON SECTION
+                                        ==========================-->
+
+            <section class="comparison-section">
+                <div class="section-header">
+                    <h2>Compare Your Progress</h2>
+                    <button class="compare-btn" type="button"><i class="fa-solid fa-code-compare"></i> Compare
+                        Analyses</button>
+                </div>
+                <div class="comparison-grid" id="comparisonGrid"></div>
+            </section>
+
+            <!--=========================
+                                                MONTHLY ANALYTICS
+                                        ==========================-->
+
+            <section class="analytics-section">
+
+                <div class="analytics-card">
+
+                    <div class="section-header">
+
+                        <h2>Monthly Beauty Progress</h2>
+
+                        <span>Last 6 Months</span>
+
+                    </div>
+
+                    <div class="chart-container">
+
+                        <canvas id="beautyChart"></canvas>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!--=========================
+                                                RECENT ACTIVITY
+                                        ==========================-->
+
+            <section class="activity-section">
+
+                <div class="section-header">
+
+                    <h2>Recent Activity</h2>
+
+                </div>
+
+                <div class="timeline">
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-icon">
+
+                            <i class="fa-solid fa-camera"></i>
+
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h3>New Face Analysis Completed</h3>
+
+                            <p>
+
+                                Your latest AI facial analysis achieved
+                                a beauty score of <strong>94%</strong>.
+
+                            </p>
+
+                            <span>Today • 10:45 AM</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-icon">
+
+                            <i class="fa-solid fa-download"></i>
+
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h3>Report Downloaded</h3>
+
+                            <p>
+
+                                You downloaded your Professional Makeup
+                                Analysis Report.
+
+                            </p>
+
+                            <span>Yesterday • 07:20 PM</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="timeline-item">
+
+                        <div class="timeline-icon">
+
+                            <i class="fa-solid fa-star"></i>
+
+                        </div>
+
+                        <div class="timeline-content">
+
+                            <h3>New Personal Best</h3>
+
+                            <p>
+
+                                Congratulations! You achieved your
+                                highest beauty score this month.
+
+                            </p>
+
+                            <span>3 Days Ago</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!--=========================
+                                                AI INSIGHTS
+                                        ==========================-->
+
+            <section class="insights-section">
+
+                <div class="section-header">
+
+                    <h2>AI Insights</h2>
+
+                </div>
+
+                <div class="insights-grid">
+
+                    <div class="insight-card">
+
+                        <i class="fa-solid fa-face-smile"></i>
+
+                        <h3>Facial Symmetry</h3>
+
+                        <p>
+
+                            Your facial symmetry has improved by
+                            <strong>5%</strong> compared to your
+                            previous analysis.
+
+                        </p>
+
+                    </div>
+
+                    <div class="insight-card">
+
+                        <i class="fa-solid fa-palette"></i>
+
+                        <h3>Makeup Match</h3>
+
+                        <p>
+
+                            Neutral and soft pink shades continue to
+                            provide the best overall appearance.
+
+                        </p>
+
+                    </div>
+
+                    <div class="insight-card">
+
+                        <i class="fa-solid fa-lightbulb"></i>
+
+                        <h3>AI Suggestion</h3>
+
+                        <p>
+
+                            Complete two more analyses this week to
+                            receive even more accurate personalized
+                            recommendations.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!--=========================
+                                                PART 4 STARTS HERE
+                                        ==========================-->
+            <!--=========================
+                                                                CLEAR HISTORY MODAL
+                                                        ==========================-->
+
+            <div class="modal" id="clearHistoryModal" aria-hidden="true">
+                <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="clearHistoryTitle">
+                    <div class="modal-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <h2 id="clearHistoryTitle">Clear Analysis History?</h2>
+                    <p>This will permanently remove all saved analysis records from this browser.</p>
+                    <div class="modal-buttons">
+                        <button class="cancel-btn" type="button">Cancel</button>
+                        <button class="confirm-btn" type="button">Clear History</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal" id="analysisDetailModal" aria-hidden="true">
+                <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="analysisDetailTitle">
+                    <div class="modal-icon"><i class="fa-solid fa-eye"></i></div>
+                    <h2 id="analysisDetailTitle">Analysis Details</h2>
+                    <div id="analysisDetailBody" class="analysis-detail-body"></div>
+                    <div class="modal-buttons"><button class="cancel-btn detail-close-btn" type="button">Close</button>
+                    </div>
+                </div>
+            </div>
+
+            <!--=========================
+                                                                PREMIUM CTA
+                                                        ==========================-->
+
+            <section class="cta-section">
+
+                <h2>Ready for Your Next AI Analysis?</h2>
+
+                <p>
+
+                    Upload a new photo and discover personalized beauty
+                    insights, makeup recommendations, and track your
+                    progress over time using our AI-powered analysis.
+
+                </p>
+
+                <div class="cta-buttons">
+
+                    <a href="analysis.html" class="primary-btn">
+
+                        <i class="fa-solid fa-camera"></i>
+
+                        Start New Analysis
+
+                    </a>
+
+                    <a href="recommendation.html" class="secondary-btn">
+
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                        View Recommendations
+
+                    </a>
+
+                </div>
+
+            </section>
+
+            <!--=========================
+                                                                FOOTER
+                                                        ==========================-->
+
+            <footer class="dashboard-footer">
+
+                <div class="footer-left">
+
+                    <h3>AI Makeup Analysis Guide</h3>
+
+                    <p>
+
+                        Empowering beauty with Artificial Intelligence,
+                        personalized recommendations, and smart skincare
+                        insights for everyone.
+
+                    </p>
+
+                    <p class="copyright">
+
+                        © 2026 AI Makeup Analysis Guide.
+                        All Rights Reserved.
+
+                    </p>
+
+                </div>
+
+                <div class="footer-right">
+
+                    <a href="#" aria-label="Facebook">
+
+                        <i class="fa-brands fa-facebook-f"></i>
+
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                    </a>
+
+                    <a href="#" aria-label="LinkedIn">
+
+                        <i class="fa-brands fa-linkedin-in"></i>
+
+                    </a>
+
+                    <a href="#" aria-label="GitHub">
+
+                        <i class="fa-brands fa-github"></i>
+
+                    </a>
+
+                    <a href="#" aria-label="YouTube">
+
+                        <i class="fa-brands fa-youtube"></i>
+
+                    </a>
+
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!--=========================
+                                                        CHART.JS
+                                                ==========================-->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!--=========================
+                                                        HISTORY JAVASCRIPT
+                                                ==========================-->
+
+    <script src="assets/js/history.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+
+
+
+</body>
+
+</html>

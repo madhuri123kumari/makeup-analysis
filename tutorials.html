@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tutorials | AI Makeup Analysis Guide</title>
+
+    <link rel="stylesheet" href="assets/css/tutorials.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+    <style id="featured-video-override">
+        /* =========================================================
+   FEATURED MAKEUP VIDEO - ADDED FOR 3D MAKEUP TUTORIAL
+   ========================================================= */
+
+        .featured-video {
+            display: grid !important;
+            grid-template-columns: minmax(0, 58%) minmax(0, 42%) !important;
+            width: 100% !important;
+            min-height: 450px !important;
+            overflow: hidden !important;
+            border-radius: 24px !important;
+            background: #ffffff !important;
+        }
+
+        .featured-video .featured-image {
+            position: relative !important;
+            width: 100% !important;
+            height: 450px !important;
+            overflow: hidden !important;
+            background: #111 !important;
+        }
+
+        .featured-video .featured-image video {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            background: #111 !important;
+        }
+
+        .featured-video .play-button {
+            position: absolute !important;
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            z-index: 10 !important;
+            width: 82px !important;
+            height: 82px !important;
+            padding: 0 !important;
+            border: 6px solid rgba(255, 255, 255, .65) !important;
+            border-radius: 50% !important;
+            background: linear-gradient(135deg, #ec4899, #8b3dff) !important;
+            color: #fff !important;
+            font-size: 27px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            box-shadow: 0 10px 35px rgba(139, 61, 255, .45) !important;
+            transition: opacity .25s ease, transform .25s ease !important;
+        }
+
+        .featured-video .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.08) !important;
+        }
+
+        .featured-video .play-button i {
+            margin-left: 4px !important;
+        }
+
+        .featured-video .featured-image.video-playing .play-button {
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        .featured-video .featured-content {
+            padding: 42px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            background: #fff !important;
+        }
+
+        .featured-video .featured-content h2 {
+            margin: 0 0 18px !important;
+            font-size: 36px !important;
+            line-height: 1.15 !important;
+            color: #14213d !important;
+        }
+
+        .featured-video .featured-content p {
+            margin: 0 0 24px !important;
+            line-height: 1.7 !important;
+        }
+
+        .featured-video .watch-btn {
+            width: fit-content !important;
+            border: 0 !important;
+            border-radius: 12px !important;
+            padding: 14px 24px !important;
+            background: linear-gradient(135deg, #ec4899, #8b3dff) !important;
+            color: #fff !important;
+            font-weight: 700 !important;
+            cursor: pointer !important;
+        }
+
+        @media (max-width: 900px) {
+            .featured-video {
+                grid-template-columns: 1fr !important;
+            }
+
+            .featured-video .featured-image {
+                height: 400px !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .featured-video .featured-image {
+                height: 280px !important;
+            }
+
+            .featured-video .featured-content {
+                padding: 24px !important;
+            }
+
+            .featured-video .featured-content h2 {
+                font-size: 28px !important;
+            }
+        }
+
+        /* Everyday Natural Makeup card video */
+        .tutorial-video-container {
+            position: relative !important;
+            overflow: hidden !important;
+            background: #f3eef8 !important;
+        }
+
+        .tutorial-card-video {
+            width: 100% !important;
+            height: 100% !important;
+            display: block !important;
+            object-fit: cover !important;
+            background: #f3eef8 !important;
+        }
+
+        .card-video-play {
+            position: absolute !important;
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            z-index: 8 !important;
+            width: 68px !important;
+            height: 68px !important;
+            border: 5px solid rgba(255, 255, 255, .75) !important;
+            border-radius: 50% !important;
+            background: linear-gradient(135deg, #ec4899, #8b3dff) !important;
+            color: #fff !important;
+            font-size: 23px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            box-shadow: 0 10px 30px rgba(139, 61, 255, .35) !important;
+            transition: opacity .25s ease, transform .25s ease !important;
+        }
+
+        .card-video-play:hover {
+            transform: translate(-50%, -50%) scale(1.08) !important;
+        }
+
+        .tutorial-video-container.video-playing .card-video-play {
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+
+        /* ALL TUTORIAL CARDS - VIDEO MEDIA */
+        .tutorial-video-container {
+            position: relative !important;
+            overflow: hidden !important;
+            background: #f3eef8 !important;
+        }
+
+        .tutorial-video-container .tutorial-card-video {
+            width: 100% !important;
+            height: 100% !important;
+            display: block !important;
+            object-fit: cover !important;
+            background: #111 !important;
+        }
+
+        .tutorial-video-container .universal-card-play {
+            position: absolute !important;
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            z-index: 8 !important;
+            width: 68px !important;
+            height: 68px !important;
+            border: 5px solid rgba(255, 255, 255, .75) !important;
+            border-radius: 50% !important;
+            background: linear-gradient(135deg, #ec4899, #8b3dff) !important;
+            color: #fff !important;
+            font-size: 22px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            box-shadow: 0 10px 30px rgba(139, 61, 255, .35) !important;
+            transition: .25s ease !important;
+        }
+
+        .tutorial-video-container .universal-card-play:hover {
+            transform: translate(-50%, -50%) scale(1.08) !important;
+        }
+
+        .tutorial-video-container.video-playing .universal-card-play {
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+    </style>
+
+
+    <style id="production-video-fixes">
+        .tutorial-card[hidden] {
+            display: none !important;
+        }
+
+        video {
+            cursor: pointer;
+        }
+
+        .video-playing .play-button,
+        .video-playing .card-video-play,
+        .video-playing .universal-card-play {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!--=========================
+            SIDEBAR
+    =========================-->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                <h2>AI Makeup</h2>
+
+            </div>
+
+            <ul class="menu">
+
+                <li>
+
+                    <a href="dashboard.html">
+
+                        <i class="fa-solid fa-house"></i>
+
+                        <span>Dashboard</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="analysis.html">
+
+                        <i class="fa-solid fa-camera"></i>
+
+                        <span>Analysis</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="recommendation.html">
+
+                        <i class="fa-solid fa-gem"></i>
+
+                        <span>Recommendations</span>
+
+                    </a>
+
+                </li>
+
+                <li class="active">
+
+                    <a href="tutorials.html">
+
+                        <i class="fa-solid fa-video"></i>
+
+                        <span>Tutorials</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="history.html">
+
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+
+                        <span>History</span>
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="profile.html">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <span>Profile</span>
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </aside>
+
+        <!--=========================
+            MAIN CONTENT
+    =========================-->
+
+        <main class="main">
+
+            <!--=====================
+                TOPBAR
+        =====================-->
+
+            <header class="topbar">
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input type="text" placeholder="Search tutorials...">
+
+                </div>
+
+                <div class="top-icons">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <img src="assets/images/profile.jpg" alt="Profile">
+
+                </div>
+
+            </header>
+
+            <!--=====================
+            PAGE TITLE
+        =====================-->
+
+            <section class="page-title">
+
+                <h1>AI Makeup Tutorials</h1>
+
+                <p>
+
+                    Learn professional makeup techniques with step-by-step AI curated tutorials designed for your face
+                    shape, skin tone, and beauty goals.
+
+                </p>
+
+            </section>
+
+            <!--=====================
+            CATEGORY FILTERS
+        =====================-->
+
+            <section class="filter-buttons">
+
+                <button class="active">All</button>
+
+                <button>Beginner</button>
+
+                <button>Bridal</button>
+
+                <button>Party</button>
+
+                <button>Office</button>
+
+                <button>Skincare</button>
+
+            </section>
+
+            <!--=====================
+            FEATURED TUTORIAL
+        =====================-->
+
+            <section class="featured-video" id="featuredTutorial">
+
+                <div class="featured-image" id="featuredVideoBox">
+
+                    <video id="featuredTutorialVideo" preload="metadata" playsinline controls
+                        poster="assets/images/tutorial-feature.jpg">
+                        <source src="assets/videos/3d_makeup_tutorial_SYNCED.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <button class="play-button" id="featuredPlayButton" type="button" aria-label="Play makeup tutorial">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+
+                </div>
+
+                <div class="featured-content">
+
+                    <span class="featured-tag">
+                        Featured Tutorial
+                    </span>
+
+                    <h2>
+                        Complete Everyday Makeup Guide
+                    </h2>
+
+                    <p>
+                        Follow a complete beginner-friendly makeup routine from
+                        cleansing and skincare preparation to foundation, eyes,
+                        lips, setting spray, and the final look.
+                    </p>
+
+                    <div class="video-info">
+
+                        <span>
+                            <i class="fa-regular fa-clock"></i>
+                            1 min 36 sec
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-signal"></i>
+                            Beginner
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-star"></i>
+                            4.9 Rating
+                        </span>
+
+                    </div>
+
+                    <button class="watch-btn" id="watchTutorialBtn" type="button">
+                        <i class="fa-solid fa-play"></i>
+                        Watch Tutorial
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!--=====================
+VIDEO GRID
+        =====================-->
+
+            <section class="tutorial-grid">
+                <!--=====================
+                                            TUTORIAL CARD 1
+                                        =====================-->
+
+                <div class="tutorial-card everyday-makeup-card">
+
+                    <div class="tutorial-image tutorial-video-container">
+
+                        <video id="everydayMakeupVideo" class="tutorial-card-video" preload="metadata" playsinline
+                            poster="assets/images/everyday-natural-makeup.jpg">
+                            <source src="assets/videos/everyday-natural-makeup.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+
+                        <button class="card-video-play" id="everydayPlayButton" type="button"
+                            aria-label="Play Everyday Natural Makeup">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+
+                        <button class="bookmark-btn" type="button" aria-label="Save Tutorial">
+
+                            <i class="fa-regular fa-bookmark"></i>
+
+                        </button>
+
+                        <span class="duration">
+
+                            12 min
+
+                        </span>
+
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <span class="level beginner">
+
+                            Beginner
+
+                        </span>
+
+                        <h3>
+
+                            Everyday Natural Makeup
+
+                        </h3>
+
+                        <p>
+
+                            Learn a simple everyday makeup routine suitable for college and office.
+
+                        </p>
+
+                        <div class="tutorial-meta">
+
+                            <span>
+
+                                <i class="fa-solid fa-star"></i>
+
+                                4.8
+
+                            </span>
+
+                            <span>
+
+                                <i class="fa-regular fa-eye"></i>
+
+                                120K Views
+
+                            </span>
+
+                        </div>
+
+                        <button class="watch-now" id="everydayWatchButton" type="button">
+
+                            Watch Now
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!--=====================
+                                            TUTORIAL CARD 2
+                                        =====================-->
+
+                <div class="tutorial-card">
+
+                    <div class="tutorial-image tutorial-video-container">
+
+                        <video class="tutorial-card-video" preload="metadata" playsinline>
+                            <source src="assets/videos/bridal-makeup.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+
+                        <button class="card-video-play universal-card-play" type="button"
+                            aria-label="Play Bridal Makeup">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+
+                        <button class="bookmark-btn" type="button" aria-label="Save Tutorial">
+
+                            <i class="fa-regular fa-bookmark"></i>
+
+                        </button>
+
+                        <span class="duration">
+
+                            26 min
+
+                        </span>
+
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <span class="level advanced">
+
+                            Bridal
+
+                        </span>
+
+                        <h3>
+
+                            Luxury Bridal Makeup
+
+                        </h3>
+
+                        <p>
+
+                            Complete bridal makeup with contouring, shimmer eyes, and premium finishing.
+
+                        </p>
+
+                        <div class="tutorial-meta">
+
+                            <span>
+
+                                <i class="fa-solid fa-star"></i>
+
+                                5.0
+
+                            </span>
+
+                            <span>
+
+                                <i class="fa-regular fa-eye"></i>
+
+                                980K Views
+
+                            </span>
+
+                        </div>
+
+                        <button class="watch-now">
+
+                            Watch Now
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!--=====================
+                                            TUTORIAL CARD 3
+                                        =====================-->
+
+                <div class="tutorial-card">
+
+                    <div class="tutorial-image tutorial-video-container">
+
+                        <video class="tutorial-card-video" preload="metadata" playsinline>
+                            <source src="assets/videos/party-makeup.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+
+                        <button class="card-video-play universal-card-play" type="button"
+                            aria-label="Play Party Makeup">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+
+                        <button class="bookmark-btn" type="button" aria-label="Save Tutorial">
+
+                            <i class="fa-regular fa-bookmark"></i>
+
+                        </button>
+
+                        <span class="duration">
+
+                            18 min
+
+                        </span>
+
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <span class="level intermediate">
+
+                            Party
+
+                        </span>
+
+                        <h3>
+
+                            Glam Party Makeup
+
+                        </h3>
+
+                        <p>
+
+                            Create a glamorous party makeup look with smokey eyes and glossy lips.
+
+                        </p>
+
+                        <div class="tutorial-meta">
+
+                            <span>
+
+                                <i class="fa-solid fa-star"></i>
+
+                                4.9
+
+                            </span>
+
+                            <span>
+
+                                <i class="fa-regular fa-eye"></i>
+
+                                420K Views
+
+                            </span>
+
+                        </div>
+
+                        <button class="watch-now">
+
+                            Watch Now
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!--=====================
+                                            TUTORIAL CARD 4
+                                        =====================-->
+
+                <div class="tutorial-card">
+
+                    <div class="tutorial-image tutorial-video-container">
+
+                        <video class="tutorial-card-video" preload="metadata" playsinline>
+                            <source src="assets/videos/office-makeup.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+
+                        <button class="card-video-play universal-card-play" type="button"
+                            aria-label="Play Office Makeup">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+
+                        <button class="bookmark-btn" type="button" aria-label="Save Tutorial">
+
+                            <i class="fa-regular fa-bookmark"></i>
+
+                        </button>
+
+                        <span class="duration">
+
+                            10 min
+
+                        </span>
+
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <span class="level beginner">
+
+                            Office
+
+                        </span>
+
+                        <h3>
+
+                            Professional Office Look
+
+                        </h3>
+
+                        <p>
+
+                            A clean and elegant makeup routine perfect for work and meetings.
+
+                        </p>
+
+                        <div class="tutorial-meta">
+
+                            <span>
+
+                                <i class="fa-solid fa-star"></i>
+
+                                4.7
+
+                            </span>
+
+                            <span>
+
+                                <i class="fa-regular fa-eye"></i>
+
+                                95K Views
+
+                            </span>
+
+                        </div>
+
+                        <button class="watch-now">
+
+                            Watch Now
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!--=====================
+                                            PART 3 STARTS HERE
+                                        =====================-->
+                <!--=====================
+                                                                    TUTORIAL CARD 5
+                                                                =====================-->
+
+                <div class="tutorial-card">
+
+                    <div class="tutorial-image tutorial-video-container">
+
+                        <video class="tutorial-card-video" preload="metadata" playsinline>
+                            <source src="assets/videos/skincare-routine.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+
+                        <button class="card-video-play universal-card-play" type="button"
+                            aria-label="Play Skincare Routine">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+
+                        <button class="bookmark-btn" type="button" aria-label="Save Tutorial">
+
+                            <i class="fa-regular fa-bookmark"></i>
+
+                        </button>
+
+                        <span class="duration">
+
+                            15 min
+
+                        </span>
+
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <span class="level intermediate">
+
+                            Skincare
+
+                        </span>
+
+                        <h3>
+
+                            Healthy Skin Care Routine
+
+                        </h3>
+
+                        <p>
+
+                            Learn cleansing, moisturizing and sunscreen application for glowing skin.
+
+                        </p>
+
+                        <div class="tutorial-meta">
+
+                            <span>
+
+                                <i class="fa-solid fa-star"></i>
+
+                                4.9
+
+                            </span>
+
+                            <span>
+
+                                <i class="fa-regular fa-eye"></i>
+
+                                310K Views
+
+                            </span>
+
+                        </div>
+
+                        <button class="watch-now">
+
+                            Watch Now
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!--=====================
+                                                                    TUTORIAL CARD 6
+                                                                =====================-->
+
+                <div class="tutorial-card">
+
+                    <div class="tutorial-image tutorial-video-container">
+
+                        <video class="tutorial-card-video" preload="metadata" playsinline>
+                            <source src="assets/videos/evening-makeup.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+
+                        <button class="card-video-play universal-card-play" type="button"
+                            aria-label="Play Evening Makeup">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+
+                        <button class="bookmark-btn" type="button" aria-label="Save Tutorial">
+
+                            <i class="fa-regular fa-bookmark"></i>
+
+                        </button>
+
+                        <span class="duration">
+
+                            22 min
+
+                        </span>
+
+                    </div>
+
+                    <div class="tutorial-content">
+
+                        <span class="level advanced">
+
+                            Evening
+
+                        </span>
+
+                        <h3>
+
+                            Evening Glam Makeup
+
+                        </h3>
+
+                        <p>
+
+                            Master contouring, glitter eyeshadow and bold lipstick for special events.
+
+                        </p>
+
+                        <div class="tutorial-meta">
+
+                            <span>
+
+                                <i class="fa-solid fa-star"></i>
+
+                                5.0
+
+                            </span>
+
+                            <span>
+
+                                <i class="fa-regular fa-eye"></i>
+
+                                760K Views
+
+                            </span>
+
+                        </div>
+
+                        <button class="watch-now">
+
+                            Watch Now
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!--=====================
+                                                                AI LEARNING TIPS
+                                                            =====================-->
+
+            <section class="learning-tips">
+
+                <h2>AI Learning Tips</h2>
+
+                <div class="tips-grid">
+
+                    <div class="tip-card">
+
+                        <i class="fa-solid fa-lightbulb"></i>
+
+                        <h3>Practice Daily</h3>
+
+                        <p>
+
+                            Spend 15–20 minutes practicing makeup techniques every day to improve your skills.
+
+                        </p>
+
+                    </div>
+
+                    <div class="tip-card">
+
+                        <i class="fa-solid fa-face-smile"></i>
+
+                        <h3>Know Your Face Shape</h3>
+
+                        <p>
+
+                            Use your AI analysis results to choose makeup styles that enhance your natural features.
+
+                        </p>
+
+                    </div>
+
+                    <div class="tip-card">
+
+                        <i class="fa-solid fa-palette"></i>
+
+                        <h3>Choose Correct Shades</h3>
+
+                        <p>
+
+                            Match foundation, blush and lipstick with your skin tone for a flawless finish.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!--=====================
+                                                                LEARNING PROGRESS
+                                                            =====================-->
+
+            <section class="progress-section">
+
+                <h2>Your Learning Progress</h2>
+
+                <div class="progress-grid">
+
+                    <div class="progress-card">
+
+                        <h3>Completed Tutorials</h3>
+
+                        <h1>18</h1>
+
+                    </div>
+
+                    <div class="progress-card">
+
+                        <h3>Saved Tutorials</h3>
+
+                        <h1>9</h1>
+
+                    </div>
+
+                    <div class="progress-card">
+
+                        <h3>Learning Score</h3>
+
+                        <h1>92%</h1>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!--=====================
+                                                                LEARNING PATH
+                                                            =====================-->
+
+            <section class="learning-path">
+
+                <h2>Recommended Learning Path</h2>
+
+                <div class="path-card">
+
+                    <div class="path-step">
+
+                        <span>1</span>
+
+                        <p>Learn basic skincare and face preparation.</p>
+
+                    </div>
+
+                    <div class="path-step">
+
+                        <span>2</span>
+
+                        <p>Practice foundation and concealer application.</p>
+
+                    </div>
+
+                    <div class="path-step">
+
+                        <span>3</span>
+
+                        <p>Master eye makeup and eyebrow shaping.</p>
+
+                    </div>
+
+                    <div class="path-step">
+
+                        <span>4</span>
+
+                        <p>Finish with blush, contour, and lipstick techniques.</p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!--=====================
+                                                                PART 4 STARTS HERE
+                                                            =====================-->
+            <!--=====================
+                                                                                    CTA SECTION
+                                                                            =====================-->
+
+            <section class="cta-section">
+
+                <h2>Ready to Improve Your Makeup Skills?</h2>
+
+                <p>
+
+                    Continue learning with AI-powered personalized tutorials,
+                    practice regularly, and become confident in creating
+                    professional makeup looks for every occasion.
+
+                </p>
+
+                <div class="cta-buttons">
+
+                    <a href="analysis.html" class="primary-btn">
+
+                        Analyze My Face
+
+                    </a>
+
+                    <a href="recommendation.html" class="secondary-btn">
+
+                        View Recommendations
+
+                    </a>
+
+                </div>
+
+            </section>
+
+            <!--=====================
+                                                                                    FOOTER
+                                                                            =====================-->
+
+            <footer class="dashboard-footer">
+
+                <div class="footer-left">
+
+                    <h3>AI Makeup Analysis Guide</h3>
+
+                    <p>
+
+                        Learn smarter with AI-powered beauty tutorials,
+                        personalized recommendations, and expert makeup
+                        guidance designed specifically for you.
+
+                    </p>
+
+                    <p class="copyright">
+
+                        © 2026 AI Makeup Analysis Guide.
+                        All Rights Reserved.
+
+                    </p>
+
+                </div>
+
+                <div class="footer-right">
+
+                    <a href="#" aria-label="Facebook">
+
+                        <i class="fa-brands fa-facebook-f"></i>
+
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                    </a>
+
+                    <a href="#" aria-label="LinkedIn">
+
+                        <i class="fa-brands fa-linkedin-in"></i>
+
+                    </a>
+
+                    <a href="#" aria-label="GitHub">
+
+                        <i class="fa-brands fa-github"></i>
+
+                    </a>
+
+                    <a href="#" aria-label="YouTube">
+
+                        <i class="fa-brands fa-youtube"></i>
+
+                    </a>
+
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!--=====================
+                                                                            JAVASCRIPT
+                                                                    ======================-->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            "use strict";
+
+            const videos = [...document.querySelectorAll("video")];
+            const tutorialCards = [...document.querySelectorAll(".tutorial-card")];
+            const filterButtons = [...document.querySelectorAll(".filter-buttons button")];
+            const searchInput = document.querySelector(".search-box input");
+
+            /*
+             * Video policy:
+             * Videos NEVER autoplay. Every video starts only from an explicit user click.
+             * This also protects the page from other scripts or browser state causing
+             * an unwanted playback when the page is opened.
+             */
+            videos.forEach(video => {
+                video.removeAttribute("autoplay");
+                video.removeAttribute("loop");
+                video.preload = "metadata";
+                video.playsInline = true;
+                video.pause();
+                video.currentTime = 0;
+            });
+
+            function updatePlayButton(video) {
+                const container = video.closest(".tutorial-video-container, .featured-image");
+                if (!container) return;
+
+                const button = container.querySelector(
+                    ".universal-card-play, .card-video-play, .play-button"
+                );
+
+                if (!button) return;
+
+                const icon = button.querySelector("i");
+                if (!icon) return;
+
+                if (video.paused || video.ended) {
+                    icon.className = "fa-solid fa-play";
+                    container.classList.remove("video-playing");
+                    button.setAttribute("aria-label", "Play video");
+                } else {
+                    icon.className = "fa-solid fa-pause";
+                    container.classList.add("video-playing");
+                    button.setAttribute("aria-label", "Pause video");
+                }
+            }
+
+            function pauseOtherVideos(activeVideo) {
+                videos.forEach(video => {
+                    if (video !== activeVideo && !video.paused) {
+                        video.pause();
+                        video.currentTime = 0;
+                        updatePlayButton(video);
+                    }
+                });
+            }
+
+            async function toggleVideo(video) {
+                if (!video) return;
+
+                if (video.paused || video.ended) {
+                    pauseOtherVideos(video);
+
+                    try {
+                        await video.play();
+                    } catch (error) {
+                        console.error("Video could not be played:", error);
+                    }
+                } else {
+                    video.pause();
+                }
+
+                updatePlayButton(video);
+            }
+
+            /*
+             * Play/pause overlays.
+             */
+            document.querySelectorAll(
+                ".universal-card-play, .card-video-play, .play-button"
+            ).forEach(button => {
+                button.addEventListener("click", event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    const container = button.closest(
+                        ".tutorial-video-container, .featured-image"
+                    );
+                    const video = container ? container.querySelector("video") : null;
+
+                    toggleVideo(video);
+                });
+            });
+
+            /*
+             * Clicking the actual video also toggles playback.
+             */
+            videos.forEach(video => {
+                video.addEventListener("click", () => toggleVideo(video));
+
+                video.addEventListener("play", () => {
+                    pauseOtherVideos(video);
+                    updatePlayButton(video);
+                });
+
+                video.addEventListener("pause", () => updatePlayButton(video));
+
+                video.addEventListener("ended", () => {
+                    video.currentTime = 0;
+                    updatePlayButton(video);
+                });
+
+                video.addEventListener("error", () => {
+                    console.error("Unable to load video:", video.currentSrc);
+                });
+            });
+
+            /*
+             * Featured "Watch Tutorial" button.
+             */
+            const featuredVideo = document.getElementById("featuredTutorialVideo");
+            const featuredBox = document.getElementById("featuredVideoBox");
+            const watchTutorialButton = document.getElementById("watchTutorialBtn");
+
+            if (watchTutorialButton && featuredVideo) {
+                watchTutorialButton.addEventListener("click", async () => {
+                    featuredBox?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                    await new Promise(resolve => setTimeout(resolve, 350));
+                    toggleVideo(featuredVideo);
+                });
+            }
+
+            /*
+             * Card "Watch Now" buttons.
+             */
+            tutorialCards.forEach(card => {
+                const watchButton = card.querySelector(".watch-now");
+                const video = card.querySelector("video");
+
+                if (!watchButton || !video) return;
+
+                watchButton.addEventListener("click", async () => {
+                    card.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                    await new Promise(resolve => setTimeout(resolve, 350));
+                    toggleVideo(video);
+                });
+            });
+
+            /*
+             * Bookmarks are real and persistent using localStorage.
+             */
+            const BOOKMARK_KEY = "aiMakeupTutorialBookmarks";
+
+            function getBookmarks() {
+                try {
+                    return JSON.parse(localStorage.getItem(BOOKMARK_KEY) || "[]");
+                } catch {
+                    return [];
+                }
+            }
+
+            function setBookmarks(bookmarks) {
+                localStorage.setItem(BOOKMARK_KEY, JSON.stringify(bookmarks));
+            }
+
+            document.querySelectorAll(".tutorial-card").forEach((card, index) => {
+                const button = card.querySelector(".bookmark-btn");
+                if (!button) return;
+
+                const id = card.querySelector("h3")?.textContent.trim() || `tutorial-${index}`;
+                button.dataset.bookmarkId = id;
+
+                const renderBookmark = () => {
+                    const saved = getBookmarks().includes(id);
+                    const icon = button.querySelector("i");
+
+                    if (saved) {
+                        icon?.classList.remove("fa-regular");
+                        icon?.classList.add("fa-solid");
+                        button.setAttribute("aria-label", "Remove saved tutorial");
+                        button.setAttribute("title", "Saved");
+                    } else {
+                        icon?.classList.remove("fa-solid");
+                        icon?.classList.add("fa-regular");
+                        button.setAttribute("aria-label", "Save tutorial");
+                        button.setAttribute("title", "Save tutorial");
+                    }
+                };
+
+                button.addEventListener("click", event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    const bookmarks = getBookmarks();
+                    const position = bookmarks.indexOf(id);
+
+                    if (position === -1) {
+                        bookmarks.push(id);
+                    } else {
+                        bookmarks.splice(position, 1);
+                    }
+
+                    setBookmarks(bookmarks);
+                    renderBookmark();
+                });
+
+                renderBookmark();
+            });
+
+            /*
+             * Tutorial category filtering.
+             */
+            filterButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    filterButtons.forEach(item => item.classList.remove("active"));
+                    button.classList.add("active");
+
+                    const selected = button.textContent.trim().toLowerCase();
+
+                    tutorialCards.forEach(card => {
+                        const level = card.querySelector(".level")?.textContent
+                            .trim()
+                            .toLowerCase() || "";
+
+                        const matches =
+                            selected === "all" ||
+                            level === selected;
+
+                        card.hidden = !matches;
+
+                        if (!matches) {
+                            const video = card.querySelector("video");
+                            if (video && !video.paused) {
+                                video.pause();
+                                video.currentTime = 0;
+                                updatePlayButton(video);
+                            }
+                        }
+                    });
+                });
+            });
+
+            /*
+             * Search filters tutorial cards by title, category and description.
+             */
+            if (searchInput) {
+                searchInput.addEventListener("input", () => {
+                    const query = searchInput.value.trim().toLowerCase();
+
+                    tutorialCards.forEach(card => {
+                        const searchableText = card.textContent.toLowerCase();
+                        card.hidden = query !== "" && !searchableText.includes(query);
+
+                        if (card.hidden) {
+                            const video = card.querySelector("video");
+                            if (video && !video.paused) {
+                                video.pause();
+                                video.currentTime = 0;
+                                updatePlayButton(video);
+                            }
+                        }
+                    });
+                });
+            }
+
+            /*
+             * When the user leaves the page or switches tabs, stop playback.
+             * This prevents videos continuing unexpectedly in the background.
+             */
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    videos.forEach(video => {
+                        if (!video.paused) {
+                            video.pause();
+                            updatePlayButton(video);
+                        }
+                    });
+                }
+            });
+
+            /*
+             * If a video loses focus after a card is hidden, stop it.
+             */
+            videos.forEach(video => {
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting && !video.paused) {
+                            video.pause();
+                            updatePlayButton(video);
+                        }
+                    });
+                }, { threshold: 0.05 });
+
+                observer.observe(video);
+            });
+
+            /*
+             * Final safety check: no video is allowed to start during initial load.
+             */
+            window.addEventListener("load", () => {
+                videos.forEach(video => {
+                    video.pause();
+                    video.currentTime = 0;
+                    updatePlayButton(video);
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

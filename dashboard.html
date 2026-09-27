@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | AI Makeup Analysis Guide</title>
+
+
+    <!-- Google Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+    <!-- Dashboard CSS -->
+
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <style id="professional-dashboard-overrides">
+        :root {
+            --brand: #9b59c7;
+            --brand-dark: #6f3c98;
+            --brand-soft: #f4eafa;
+            --text: #17131b;
+            --muted: #746d79;
+            --border: #eadff0;
+            --surface: #ffffff;
+            --surface-2: #faf7fc;
+            --success: #16835b;
+            --warning: #b86b00;
+            --danger: #b42318;
+            --shadow: 0 18px 50px rgba(67, 35, 82, .10);
+            --radius: 22px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #fbf9fc 0%, #f7f3f9 100%);
+            color: var(--text);
+            font-family: Poppins, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        button,
+        input {
+            font: inherit
+        }
+
+        button {
+            cursor: pointer
+        }
+
+        .dashboard {
+            min-height: 100vh
+        }
+
+        .sidebar {
+            background: linear-gradient(180deg, #24162c 0%, #34203e 100%);
+            color: #fff;
+            box-shadow: 10px 0 35px rgba(30, 15, 38, .12);
+        }
+
+        .sidebar .logo {
+            padding: 24px 20px;
+            display: flex;
+            gap: 13px;
+            align-items: center;
+        }
+
+        .sidebar .logo>i {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .12);
+            color: #fff;
+        }
+
+        .sidebar .logo h2 {
+            margin: 0;
+            font-size: 19px
+        }
+
+        .sidebar .logo span {
+            color: #cdbbd5;
+            font-size: 12px
+        }
+
+        .sidebar .menu {
+            padding: 12px 12px
+        }
+
+        .sidebar .menu li {
+            margin: 5px 0
+        }
+
+        .sidebar .menu a,
+        .sidebar .logout a {
+            border-radius: 13px;
+            transition: .2s ease;
+        }
+
+        .sidebar .menu a:hover,
+        .sidebar .logout a:hover {
+            background: rgba(255, 255, 255, .09);
+            transform: translateX(2px);
+        }
+
+        .sidebar .menu li.active a {
+            background: linear-gradient(135deg, var(--brand), #b97bd7);
+            box-shadow: 0 10px 25px rgba(155, 89, 199, .25);
+        }
+
+        .main-content {
+            background: transparent
+        }
+
+        .topbar {
+            background: rgba(255, 255, 255, .88) !important;
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border) !important;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+        }
+
+        .search-box {
+            border: 1px solid var(--border) !important;
+            background: var(--surface-2) !important;
+            border-radius: 14px !important;
+        }
+
+        .search-box input {
+            outline: none
+        }
+
+        .icon-btn {
+            border: 1px solid var(--border) !important;
+            background: #fff !important;
+            transition: .2s ease;
+        }
+
+        .icon-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(67, 35, 82, .10)
+        }
+
+        .profile img {
+            border: 2px solid #eadcf0
+        }
+
+        .welcome {
+            margin-bottom: 26px;
+            padding: 28px !important;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, #fff 0%, #fbf4fe 100%);
+            box-shadow: var(--shadow);
+        }
+
+        .welcome h1 {
+            letter-spacing: -.6px
+        }
+
+        .welcome p {
+            color: var(--muted);
+            max-width: 680px
+        }
+
+        .analyze-btn,
+        .analyze-button,
+
+        .analyze-btn:hover,
+        .analyze-button:hover:not(:disabled),
+
+        .cards {
+            gap: 18px !important
+        }
+
+        .card,
+        .upload-card,
+        .result-card,
+        .progress-card,
+        .history-card,
+        .tips-card,
+
+        .card {
+            transition: .22s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px)
+        }
+
+        .card>i,
+        .product-icon,
+        .upload-icon {
+            color: var(--brand) !important;
+        }
+
+        .card h2 {
+            font-weight: 700
+        }
+
+        .card p,
+        .card-header p,
+        .section-subtitle,
+        .ai-product-note {
+            color: var(--muted)
+        }
+
+        .upload-box {
+            border: 2px dashed #d8c4e1 !important;
+            background: linear-gradient(180deg, #fcf9fe, #f8f1fb) !important;
+            border-radius: 20px !important;
+            transition: .2s ease;
+        }
+
+        .upload-box:hover {
+            border-color: var(--brand) !important;
+            background: #fbf5fd !important;
+        }
+
+        .browse-btn {
+            border-radius: 12px !important;
+            background: #fff !important;
+            color: var(--brand-dark) !important;
+            border: 1px solid #dfccea !important;
+            box-shadow: 0 6px 16px rgba(67, 35, 82, .07);
+        }
+
+        .result-list {
+            gap: 10px
+        }
+
+        .result-item {
+            background: var(--surface-2) !important;
+            border: 1px solid #eee5f1;
+            border-radius: 14px !important;
+        }
+
+        .result-item strong {
+            color: var(--brand-dark)
+        }
+
+        .recommendation-section,
+        .progress-section,
+        .tips-section {
+            margin-top: 28px;
+        }
+
+        .recommendation-section {
+            padding: 28px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .product-grid {
+            gap: 14px !important
+        }
+
+        .product-card {
+            border: 1px solid var(--border) !important;
+            border-radius: 17px !important;
+            background: linear-gradient(180deg, #fff, #fcf9fd) !important;
+            transition: .2s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-3px);
+            border-color: #d9bfe3 !important
+        }
+
+        .product-card p {
+            color: var(--muted)
+        }
+
+        .toast {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 9999;
+            max-width: 390px;
+            padding: 14px 17px;
+            border-radius: 15px;
+            background: #211827;
+            color: #fff;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, .22);
+            transform: translateY(20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: .25s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--success)
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--danger)
+        }
+
+        .dark-mode .topbar {
+            background: rgba(30, 23, 34, .90) !important
+        }
+
+        .dark-mode .card,
+        .dark-mode .upload-card,
+        .dark-mode .result-card,
+        .dark-mode .progress-card,
+        .dark-mode .history-card,
+        .dark-mode .tips-card,
+        .dark-mode .recommendation-section,
+        .dark-mode .product-card {
+            background: #211a24 !important;
+            border-color: #3b303f !important;
+            color: #f8f2fa;
+        }
+
+        .dark-mode .welcome {
+            background: linear-gradient(135deg, #211a24, #2a1d2f)
+        }
+
+        .dark-mode .search-box,
+        .dark-mode .icon-btn {
+            background: #2a222d !important;
+            color: #fff
+        }
+
+        .dark-mode .result-item {
+            background: #2a222d !important;
+            border-color: #3b303f
+        }
+
+        .dark-mode .upload-box {
+            background: #291f2d !important
+        }
+
+        @media (max-width:900px) {
+            .welcome {
+                padding: 22px !important
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important
+            }
+        }
+
+        @media (max-width:620px) {
+            .cards {
+                grid-template-columns: 1fr !important
+            }
+
+            .top-right .profile-info {
+                display: none
+            }
+
+            .welcome {
+                flex-direction: column !important;
+                align-items: flex-start !important
+            }
+
+            .recommendation-section {
+                padding: 20px
+            }
+        }
+    </style>
+
+
+</head>
+
+
+<body>
+
+    <div class="dashboard">
+
+
+        <!-- =====================================================
+             SIDEBAR
+             ===================================================== -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                <div>
+
+                    <h2>AI Makeup</h2>
+
+                    <span>Analysis Guide</span>
+
+                </div>
+
+            </div>
+
+
+            <ul class="menu">
+
+                <li class="active">
+
+                    <a href="dashboard.html">
+
+                        <i class="fa-solid fa-house"></i>
+
+                        <span>Dashboard</span>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="analysis.html">
+
+                        <i class="fa-solid fa-camera"></i>
+
+                        <span>AI Analysis</span>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="recommendation.html">
+
+                        <i class="fa-solid fa-palette"></i>
+
+                        <span>Recommendations</span>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="tutorials.html">
+
+                        <i class="fa-solid fa-video"></i>
+
+                        <span>Tutorials</span>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="history.html">
+
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+
+                        <span>History</span>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="profile.html">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <span>Profile</span>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="settings.html">
+
+                        <i class="fa-solid fa-gear"></i>
+
+                        <span>Settings</span>
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+
+            <div class="logout">
+
+                <a href="login.html">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    <span>Logout</span>
+
+                </a>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =====================================================
+             MAIN CONTENT
+             ===================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 TOP BAR
+                 ================================================= -->
+
+            <header class="topbar">
+
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input type="search" id="dashboardSearch" placeholder="Search analysis, products..."
+                        autocomplete="off">
+
+                </div>
+
+
+                <div class="top-right">
+
+
+                    <!-- Notifications -->
+
+                    <button class="icon-btn" type="button" id="notificationBtn" title="Notifications"
+                        aria-label="Notifications">
+
+                        <i class="fa-solid fa-bell" aria-hidden="true"></i>
+
+                    </button>
+
+
+                    <!-- Dark Mode -->
+
+                    <button class="icon-btn" type="button" id="darkModeBtn" title="Toggle Dark Mode"
+                        aria-label="Toggle Dark Mode">
+
+                        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+
+                    </button>
+
+
+                    <!-- Profile -->
+
+                    <div class="profile">
+
+                        <img src="assets/images/profile.jpg" alt="Madhuri profile photo">
+
+                        <div class="profile-info">
+
+                            <h4>Madhuri</h4>
+
+                            <span>Premium User</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =================================================
+                 WELCOME SECTION
+                 ================================================= -->
+
+            <section class="welcome">
+
+                <div>
+
+                    <h1>
+                        Welcome Back, Madhuri 👋
+                    </h1>
+
+                    <p>
+                        Upload your selfie and let AI analyze
+                        your skin to recommend the perfect
+                        makeup products.
+                    </p>
+
+                </div>
+
+
+                <button class="analyze-btn" id="startAnalysisBtn" type="button">
+
+                    <i class="fa-solid fa-camera"></i>
+
+                    Start Analysis
+
+                </button>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 STATISTICS
+                 ================================================= -->
+
+            <section class="cards">
+
+
+                <div class="card">
+
+                    <i class="fa-solid fa-camera"></i>
+
+                    <h2 id="totalAnalysis">
+                        128
+                    </h2>
+
+                    <p>
+                        Total Analysis
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <i class="fa-solid fa-face-smile"></i>
+
+                    <h2 id="dashboardBeautyScore">
+                        92%
+                    </h2>
+
+                    <p>
+                        Beauty Score
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <i class="fa-solid fa-droplet"></i>
+
+                    <h2 id="dashboardSkinType">
+                        Oily
+                    </h2>
+
+                    <p>
+                        Skin Type
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <h2>
+                        4.9
+                    </h2>
+
+                    <p>
+                        AI Rating
+                    </p>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 AI ANALYSIS SECTION
+                 ================================================= -->
+
+            <section class="analysis-section">
+
+
+                <!-- =================================================
+                     UPLOAD CARD
+                     ================================================= -->
+
+                <div class="upload-card">
+
+
+                    <div class="card-header">
+
+                        <h2>
+
+                            <i class="fa-solid fa-camera"></i>
+
+                            AI Face Analysis
+
+                        </h2>
+
+
+                        <p>
+                            Upload a clear front-facing image
+                            for accurate analysis.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- Upload Area -->
+
+                    <div class="upload-box" id="uploadBox">
+
+
+                        <!-- Upload Icon -->
+
+                        <div class="upload-icon">
+
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                        </div>
+
+
+                        <h3>
+                            Drag &amp; Drop Image
+                        </h3>
+
+
+                        <p>
+                            or
+                        </p>
+
+
+                        <!-- Browse Button -->
+
+                        <label for="imageInput" class="browse-btn">
+
+                            <i class="fa-solid fa-image"></i>
+
+                            Browse Image
+
+                        </label>
+
+
+                        <!-- File Input -->
+
+                        <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp,image/jpg" hidden>
+
+
+                        <!-- Image Preview -->
+
+                        <img id="previewImage" class="preview-image" alt="Selected image preview" hidden>
+
+
+                    </div>
+
+
+
+                    <!-- Analyze Button -->
+
+                    <button id="analyzeBtn" class="analyze-button" type="button" disabled>
+
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                        Analyze Image
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                     AI RESULT CARD
+                     ================================================= -->
+
+                <div class="result-card">
+
+
+                    <div class="card-header">
+
+                        <h2>
+
+                            <i class="fa-solid fa-brain"></i>
+
+                            AI Analysis Result
+
+                        </h2>
+
+                        <p>
+                            Your personalized AI analysis
+                            will appear here.
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="result-list">
+
+
+                        <!-- Skin Type -->
+
+                        <div class="result-item">
+
+                            <span>
+                                Skin Type
+                            </span>
+
+                            <strong id="skinType">
+                                --
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Skin Tone -->
+
+                        <div class="result-item">
+
+                            <span>
+                                Skin Tone
+                            </span>
+
+                            <strong id="skinTone">
+                                --
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Face Shape -->
+
+                        <div class="result-item">
+
+                            <span>
+                                Face Shape
+                            </span>
+
+                            <strong id="faceShape">
+                                --
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Acne Level -->
+
+                        <div class="result-item">
+
+                            <span>
+                                Acne Level
+                            </span>
+
+                            <strong id="acneLevel">
+                                --
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Dark Circles -->
+
+                        <div class="result-item">
+
+                            <span>
+                                Dark Circles
+                            </span>
+
+                            <strong id="darkCircles">
+                                --
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Beauty Score -->
+
+                        <div class="result-item">
+
+                            <span>
+                                Beauty Score
+                            </span>
+
+                            <strong id="beautyScore">
+                                --
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RECOMMENDED PRODUCTS
+                 ================================================= -->
+
+            <section class="recommendation-section" id="recommendedProducts">
+
+                <h2>
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    AI Recommended Products
+                </h2>
+
+                <p class="section-subtitle">
+                    Personalized recommendations generated from your AI face and skin analysis.
+                </p>
+
+                <div class="product-grid">
+
+                    <div class="product-card" data-product="cleanser">
+                        <div class="product-icon"><i class="fa-solid fa-soap"></i></div>
+                        <h3>Cleanser</h3>
+                        <p id="product-cleanser">Waiting for AI analysis</p>
+                    </div>
+
+                    <div class="product-card" data-product="toner">
+                        <div class="product-icon"><i class="fa-solid fa-droplet"></i></div>
+                        <h3>Toner</h3>
+                        <p id="product-toner">Waiting for AI analysis</p>
+                    </div>
+
+                    <div class="product-card" data-product="moisturizer">
+                        <div class="product-icon"><i class="fa-solid fa-pump-soap"></i></div>
+                        <h3>Moisturizer</h3>
+                        <p id="product-moisturizer">Waiting for AI analysis</p>
+                    </div>
+
+                    <div class="product-card" data-product="sunscreen">
+                        <div class="product-icon"><i class="fa-solid fa-sun"></i></div>
+                        <h3>Sunscreen</h3>
+                        <p id="product-sunscreen">Waiting for AI analysis</p>
+                    </div>
+
+                    <div class="product-card" data-product="primer">
+                        <div class="product-icon"><i class="fa-solid fa-sparkles"></i></div>
+                        <h3>Primer</h3>
+                        <p id="product-primer">Waiting for AI analysis</p>
+                    </div>
+
+                    <div class="product-card" data-product="foundation">
+                        <div class="product-icon"><i class="fa-solid fa-circle-half-stroke"></i></div>
+                        <h3>Foundation</h3>
+                        <p id="product-foundation">Waiting for AI analysis</p>
+                    </div>
+
+                    <div class="product-card" data-product="concealer">
+                        <div class="product-icon"><i class="fa-solid fa-brush"></i></div>
+                        <h3>Concealer</h3>
+                        <p id="product-concealer">Waiting for AI analysis</p>
+                    </div>
+
+                    <div class="product-card" data-product="blush">
+                        <div class="product-icon"><i class="fa-solid fa-heart"></i></div>
+                        <h3>Blush</h3>
+                        <p id="product-blush">Waiting for AI analysis</p>
+                    </div>
+
+                    <div class="product-card" data-product="contour">
+                        <div class="product-icon"><i class="fa-solid fa-user"></i></div>
+                        <h3>Contour</h3>
+                        <p id="product-contour">Waiting for AI analysis</p>
+                    </div>
+
+                    <div class="product-card" data-product="highlighter">
+                        <div class="product-icon"><i class="fa-solid fa-star"></i></div>
+                        <h3>Highlighter</h3>
+                        <p id="product-highlighter">Waiting for AI analysis</p>
+                    </div>
+
+                    <div class="product-card" data-product="eyeshadow">
+                        <div class="product-icon"><i class="fa-solid fa-eye"></i></div>
+                        <h3>Eyeshadow</h3>
+                        <p id="product-eyeshadow">Waiting for AI analysis</p>
+                    </div>
+
+                    <div class="product-card" data-product="eyeliner">
+                        <div class="product-icon"><i class="fa-solid fa-pen"></i></div>
+                        <h3>Eyeliner</h3>
+                        <p id="product-eyeliner">Waiting for AI analysis</p>
+                    </div>
+
+                    <div class="product-card" data-product="mascara">
+                        <div class="product-icon"><i class="fa-solid fa-eye"></i></div>
+                        <h3>Mascara</h3>
+                        <p id="product-mascara">Waiting for AI analysis</p>
+                    </div>
+
+                    <div class="product-card" data-product="lipstick">
+                        <div class="product-icon"><i class="fa-solid fa-kiss-wink-heart"></i></div>
+                        <h3>Lipstick</h3>
+                        <p id="product-lipstick">Waiting for AI analysis</p>
+                    </div>
+
+                    <div class="product-card" data-product="setting_spray">
+                        <div class="product-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
+                        <h3>Setting Spray</h3>
+                        <p id="product-setting_spray">Waiting for AI analysis</p>
+                    </div>
+
+                </div>
+
+                <p class="ai-product-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Recommendations are populated from the backend recommendation engine after AI analysis.
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 BEAUTY PROGRESS
+                 ================================================= -->
+
+            <section class="progress-section">
+
+
+                <!-- Beauty Chart -->
+
+                <div class="progress-card">
+
+
+                    <div class="card-header">
+
+                        <h2>
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                            Beauty Progress
+
+                        </h2>
+
+                    </div>
+
+
+                    <div class="chart-box">
+
+                        <canvas id="beautyChart" aria-label="Beauty score progress chart"></canvas>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Recent Analysis -->
+
+                <div class="history-card">
+
+
+                    <div class="card-header">
+
+                        <h2>
+
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+
+                            Recent Analysis
+
+                        </h2>
+
+                    </div>
+
+
+                    <div class="history-list">
+
+
+                        <div class="history-item">
+
+                            <span>
+                                28 Jul 2026
+                            </span>
+
+                            <strong>
+                                Skin Score : 91%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="history-item">
+
+                            <span>
+                                26 Jul 2026
+                            </span>
+
+                            <strong>
+                                Skin Score : 88%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="history-item">
+
+                            <span>
+                                24 Jul 2026
+                            </span>
+
+                            <strong>
+                                Skin Score : 86%
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 AI BEAUTY TIPS
+                 ================================================= -->
+
+            <section class="tips-section">
+
+
+                <div class="tips-card">
+
+
+                    <h2>
+
+                        <i class="fa-solid fa-lightbulb"></i>
+
+                        Today's AI Beauty Tips
+
+                    </h2>
+
+
+                    <ul>
+
+                        <li>
+                            💧 Drink at least 2–3 litres of water.
+                        </li>
+
+                        <li>
+                            🧴 Apply moisturizer before makeup.
+                        </li>
+
+                        <li>
+                            ☀️ Use SPF 50 sunscreen daily.
+                        </li>
+
+                        <li>
+                            😴 Sleep 7–8 hours for healthy skin.
+                        </li>
+
+                        <li>
+                            🥗 Eat fruits and vitamin-rich foods.
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         CHART.JS
+         ========================================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- =========================================================
+         DASHBOARD JAVASCRIPT
+         ========================================================= -->
+
+    <script src="assets/js/dashboard.js"></script>
+
+</body>
+
+</html>

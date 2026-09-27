@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Python caches
+.ruff_cache/
+.pytest_cache/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Runtime/generated files
+python-ai/uploads/
+python-ai/logs/
+python-ai/temp/
+python-ai/reports/
+
+# Model/cache files
+python-ai/models/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local secrets
+*.pem
+*.keys
+
+
+# Local database
+python-ai/data/*.db
+
+# Generated product images
+python-ai/assets/images/generated_products/
+
+# Uploaded user images
+python-ai/uploads/
+
+# Logs
+python-ai/logs/

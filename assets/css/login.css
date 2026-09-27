@@ -1,0 +1,428 @@
+
+/* ==================================================
+                AI MAKEUP ANALYSIS
+                LOGIN PAGE CSS
+================================================== */
+
+/* =========================
+        GOOGLE FONT
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* =========================
+        RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* =========================
+        BODY
+========================= */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff9ecb, #f472b6);
+    padding: 30px;
+}
+
+
+/* =========================
+        MAIN CONTAINER
+========================= */
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #ffffff;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, .25);
+}
+
+
+/* =========================
+        LEFT SECTION
+========================= */
+
+.left {
+    background: linear-gradient(135deg, #ff77b7, #ff4f9d);
+    color: #ffffff;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.left h1 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.left p {
+    font-size: 17px;
+    line-height: 30px;
+    opacity: .95;
+}
+
+.left ul {
+    list-style: none;
+    margin-top: 35px;
+}
+
+.left ul li {
+    margin: 18px 0;
+    font-size: 16px;
+}
+
+.left ul li i {
+    margin-right: 12px;
+}
+
+
+/* =========================
+        RIGHT SECTION
+========================= */
+
+.right {
+    padding: 50px;
+    background: #ffffff;
+}
+
+
+/* =========================
+        LOGO
+========================= */
+
+.logo {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: #ff4f9d;
+    margin-bottom: 25px;
+}
+
+.logo span {
+    color: #7b2ff7;
+}
+
+
+/* =========================
+        HEADING
+========================= */
+
+h2 {
+    text-align: center;
+    color: #333333;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #777777;
+    margin-bottom: 30px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* =========================
+        INPUT GROUP
+========================= */
+
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #444444;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 45px 14px 15px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+    transition: .3s;
+    color: #333333;
+    background: #ffffff;
+}
+
+.input-group input:focus {
+    border-color: #ff4f9d;
+    box-shadow: 0 0 10px rgba(255, 79, 157, .25);
+}
+
+.input-group input::placeholder {
+    color: #aaaaaa;
+}
+
+.input-group i {
+    position: absolute;
+    right: 15px;
+    top: 46px;
+    color: #888888;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.input-group i:hover {
+    color: #ff4f9d;
+}
+
+
+/* =========================
+        OPTIONS
+========================= */
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0 25px;
+    font-size: 14px;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #555555;
+    cursor: pointer;
+}
+
+.options input[type="checkbox"] {
+    accent-color: #ff4f9d;
+    cursor: pointer;
+}
+
+.options a {
+    color: #ff4f9d;
+    text-decoration: none;
+    font-weight: 500;
+    transition: .3s;
+}
+
+.options a:hover {
+    color: #7b2ff7;
+}
+
+
+/* =========================
+        LOGIN BUTTON
+========================= */
+
+.login-btn {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 15px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff4f9d, #7b2ff7);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.login-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(123, 47, 247, .35);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+        DIVIDER
+========================= */
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #dddddd;
+}
+
+.divider span {
+    margin: 0 15px;
+    color: #888888;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* =========================
+        SOCIAL LOGIN
+========================= */
+
+.social-login {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.social-login button {
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    padding: 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    transition: .3s;
+}
+
+.social-login button:hover {
+    border-color: #ff4f9d;
+    color: #ff4f9d;
+    transform: translateY(-2px);
+}
+
+.social-login i {
+    margin-right: 8px;
+}
+
+
+/* =========================
+        SIGNUP LINK
+========================= */
+
+.signup-link {
+    text-align: center;
+    margin-top: 30px;
+    color: #666666;
+    font-size: 15px;
+}
+
+.signup-link a {
+    color: #ff4f9d;
+    text-decoration: none;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.signup-link a:hover {
+    color: #7b2ff7;
+}
+
+
+/* =========================
+        TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+    .container {
+        grid-template-columns: 1fr;
+        max-width: 550px;
+    }
+
+    .left {
+        display: none;
+    }
+
+    .right {
+        padding: 35px;
+    }
+}
+
+
+/* =========================
+        MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .right {
+        padding: 25px 20px;
+    }
+
+    .social-login {
+        grid-template-columns: 1fr;
+    }
+
+    .logo {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .input-group input {
+        padding: 13px 42px 13px 13px;
+    }
+
+    .options {
+        font-size: 13px;
+    }
+}
+
+
+/* =========================
+        SMALL MOBILE
+========================= */
+
+@media (max-width: 360px) {
+
+    .right {
+        padding: 22px 15px;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .login-btn {
+        font-size: 15px;
+    }
+
+    .social-login button {
+        font-size: 14px;
+    }
+}

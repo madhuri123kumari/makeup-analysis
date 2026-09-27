@@ -1,0 +1,2 @@
+assets/videos/evening-makeup.mp4 filter=lfs diff=lfs merge=lfs -text
+assets/videos/everyday-natural-makeup.mp4 filter=lfs diff=lfs merge=lfs -text

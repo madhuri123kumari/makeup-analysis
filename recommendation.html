@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recommendations | AI Makeup Analysis Guide</title>
+
+    <link rel="stylesheet" href="assets/css/recommendation.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+    <style>
+        /* =========================================================
+   E-COMMERCE SHOP — PINK / PURPLE THEME
+   ========================================================= */
+
+        .shop-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin: 24px 0;
+            padding: 16px;
+            background: rgba(255, 255, 255, .84);
+            border: 1px solid #eadff2;
+            border-radius: 16px;
+        }
+
+        .shop-search {
+            width: min(480px, 100%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 14px;
+            background: #fff;
+            border: 1px solid #e4d9ed;
+            border-radius: 12px;
+        }
+
+        .shop-search i {
+            color: #e83e9f
+        }
+
+        .shop-search input {
+            width: 100%;
+            border: 0;
+            outline: 0;
+            background: transparent;
+        }
+
+        .shop-select,
+        .clear-search {
+            min-height: 42px;
+            padding: 9px 14px;
+            border: 1px solid #e3d8eb;
+            border-radius: 10px;
+            background: #fff;
+            color: #514b60;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .shop-toolbar-left,
+        .shop-toolbar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .shop-cart-button {
+            position: relative;
+            width: 46px;
+            height: 46px;
+            border: 0;
+            border-radius: 13px;
+            color: #fff;
+            background: linear-gradient(135deg, #ed3d9e, #8238e8);
+            cursor: pointer;
+            box-shadow: 0 8px 22px rgba(128, 56, 220, .2);
+        }
+
+        .shop-cart-count {
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            min-width: 21px;
+            height: 21px;
+            padding: 0 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #fff;
+            color: #8a35da;
+            border: 2px solid #8a35da;
+            font-size: 10px;
+            font-weight: 900;
+        }
+
+        .ecom-product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .ecom-product-card {
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border: 1px solid #eadff0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(77, 40, 100, .07);
+            transition: .25s ease;
+        }
+
+        .ecom-product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 40px rgba(77, 40, 100, .13);
+        }
+
+        .ecom-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            background: linear-gradient(145deg, #fff4fa, #f5efff);
+        }
+
+        .ecom-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 18px;
+        }
+
+        .ecom-badge {
+            position: absolute;
+            top: 13px;
+            left: 13px;
+            z-index: 2;
+            padding: 6px 9px;
+            border-radius: 8px;
+            color: #fff;
+            background: linear-gradient(135deg, #ed3d9e, #8238e8);
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .ecom-wishlist {
+            position: absolute;
+            top: 13px;
+            right: 13px;
+            z-index: 3;
+            width: 38px;
+            height: 38px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .95);
+            color: #df3b95;
+            cursor: pointer;
+            box-shadow: 0 5px 16px rgba(0, 0, 0, .1);
+        }
+
+        .ecom-info {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .ecom-brand {
+            color: #a05ac5;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .6px;
+        }
+
+        .ecom-name {
+            margin: 5px 0 7px;
+            color: #202033;
+            font-size: 17px;
+            line-height: 1.35;
+        }
+
+        .ecom-description {
+            min-height: 40px;
+            margin-bottom: 9px;
+            color: #716c7c;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .ecom-rating {
+            display: flex;
+            gap: 7px;
+            align-items: center;
+            margin-bottom: 9px;
+            font-size: 13px;
+        }
+
+        .ecom-stars {
+            color: #f4a51c;
+            letter-spacing: 1px
+        }
+
+        .ecom-price {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .ecom-current {
+            color: #7c35df;
+            font-size: 23px;
+            font-weight: 900;
+        }
+
+        .ecom-old {
+            color: #aaa4b1;
+            font-size: 12px;
+            text-decoration: line-through;
+        }
+
+        .ecom-discount {
+            color: #148b63;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .ecom-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .ecom-actions button {
+            min-height: 42px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .ecom-add {
+            border: 1px solid #f0c7df;
+            background: #fff2f8;
+            color: #d63291;
+        }
+
+        .ecom-buy {
+            border: 0;
+            color: #fff;
+            background: linear-gradient(135deg, #e93d9d, #8238e8);
+        }
+
+        .ecom-details {
+            grid-column: 1/-1;
+            border: 1px solid #e5d9ed;
+            background: #fff;
+            color: #7034d2;
+        }
+
+        .ecom-empty {
+            grid-column: 1/-1;
+            padding: 70px 20px;
+            text-align: center;
+            background: #fff;
+            border: 1px dashed #d9cbe7;
+            border-radius: 20px;
+            color: #777080;
+        }
+
+        .ecom-empty i {
+            display: block;
+            margin-bottom: 12px;
+            color: #9c3cdf;
+            font-size: 45px;
+        }
+
+        /* Cart drawer */
+        .shop-cart-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            background: rgba(28, 19, 39, .45);
+            opacity: 0;
+            visibility: hidden;
+            transition: .25s ease;
+        }
+
+        .shop-cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .shop-cart-drawer {
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            right: -460px;
+            width: min(440px, 94vw);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            box-shadow: -18px 0 45px rgba(40, 20, 60, .2);
+            transition: right .3s ease;
+        }
+
+        .shop-cart-drawer.open {
+            right: 0
+        }
+
+        .shop-cart-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            border-bottom: 1px solid #eee7f3;
+        }
+
+        .shop-cart-head h2 {
+            margin: 0;
+            color: #282338
+        }
+
+        .shop-cart-close {
+            width: 38px;
+            height: 38px;
+            border: 0;
+            border-radius: 50%;
+            background: #f8efff;
+            color: #7b35df;
+            cursor: pointer;
+        }
+
+        .shop-cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 18px;
+        }
+
+        .shop-cart-item {
+            display: flex;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0eaf4;
+        }
+
+        .shop-cart-item img {
+            width: 72px;
+            height: 72px;
+            flex: 0 0 72px;
+            object-fit: contain;
+            border-radius: 11px;
+            background: #faf4ff;
+        }
+
+        .shop-cart-main {
+            flex: 1
+        }
+
+        .shop-cart-main h4 {
+            margin: 0 0 4px;
+            font-size: 14px;
+            color: #2c2739;
+        }
+
+        .shop-cart-main strong {
+            color: #7c35df
+        }
+
+        .shop-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .shop-qty button {
+            width: 27px;
+            height: 27px;
+            border: 1px solid #e3d8eb;
+            border-radius: 7px;
+            background: #fff;
+            color: #7535d5;
+            cursor: pointer;
+        }
+
+        .shop-remove {
+            border: 0;
+            background: transparent;
+            color: #e24b87;
+            cursor: pointer;
+        }
+
+        .shop-cart-footer {
+            padding: 20px;
+            border-top: 1px solid #eee7f3;
+        }
+
+        .shop-cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 13px;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .shop-cart-total strong {
+            color: #7834dd
+        }
+
+        .shop-checkout {
+            width: 100%;
+            min-height: 46px;
+            border: 0;
+            border-radius: 11px;
+            color: #fff;
+            background: linear-gradient(135deg, #ed3d9e, #8238e8);
+            cursor: pointer;
+            font-weight: 900;
+        }
+
+        .shop-empty-cart {
+            padding: 60px 20px;
+            text-align: center;
+            color: #80798b;
+        }
+
+        .shop-empty-cart i {
+            display: block;
+            margin-bottom: 12px;
+            color: #9c3cdf;
+            font-size: 44px;
+        }
+
+        .shop-toast {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 10001;
+            max-width: 360px;
+            padding: 13px 18px;
+            border-radius: 11px;
+            background: #29223a;
+            color: #fff;
+            box-shadow: 0 12px 35px rgba(40, 20, 60, .2);
+            transform: translateY(25px);
+            opacity: 0;
+            pointer-events: none;
+            transition: .25s ease;
+        }
+
+        .shop-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        @media(max-width:1100px) {
+            .ecom-product-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr))
+            }
+        }
+
+        @media(max-width:800px) {
+            .ecom-product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+
+            .shop-toolbar {
+                flex-direction: column;
+                align-items: stretch
+            }
+
+            .shop-toolbar-left,
+            .shop-toolbar-right {
+                width: 100%
+            }
+
+            .shop-search {
+                flex: 1
+            }
+        }
+
+        @media(max-width:540px) {
+            .ecom-product-grid {
+                grid-template-columns: 1fr
+            }
+
+            .ecom-actions {
+                grid-template-columns: 1fr
+            }
+
+            .ecom-details {
+                grid-column: auto
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!--=========================
+            SIDEBAR
+    ==========================-->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                <h2>AI Makeup</h2>
+
+            </div>
+
+            <ul class="menu">
+
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="analysis.html">
+                        <i class="fa-solid fa-camera"></i>
+                        <span>Analysis</span>
+                    </a>
+                </li>
+
+                <li class="active">
+                    <a href="recommendation.html">
+                        <i class="fa-solid fa-gem"></i>
+                        <span>Recommendations</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="tutorials.html">
+                        <i class="fa-solid fa-video"></i>
+                        <span>Tutorials</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="history.html">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>History</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="profile.html">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+
+            </ul>
+
+        </aside>
+
+        <!--=========================
+            MAIN CONTENT
+    ==========================-->
+
+        <main class="main">
+
+            <!--=====================
+                TOPBAR
+        ======================-->
+
+            <header class="topbar">
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input id="topProductSearch" type="search" placeholder="Search products..." autocomplete="off">
+
+                </div>
+
+                <div class="top-icons">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <button type="button" class="shop-cart-button" id="openCart" aria-label="Open shopping cart"
+                        title="Shopping Cart">
+
+                        <i class="fa-solid fa-bag-shopping"></i>
+
+                        <span class="shop-cart-count" id="cartCount">
+                            0
+                        </span>
+
+                    </button>
+
+                    <img src="assets/images/profile.jpg" alt="Profile">
+
+                </div>
+
+            </header>
+
+            <!--=====================
+             PAGE HEADER
+        ======================-->
+
+            <section class="page-title">
+
+                <h1>Personalized Recommendations</h1>
+
+                <p>
+                    AI-selected makeup products based on your face shape,
+                    skin tone, and beauty analysis.
+                </p>
+
+            </section>
+
+            <!--=====================
+             FILTER BUTTONS
+        ======================-->
+
+            <section class="filter-buttons">
+
+                <button class="active">All</button>
+
+                <button>Foundation</button>
+
+                <button>Lipstick</button>
+
+                <button>Eyes</button>
+
+                <button>Blush</button>
+
+                <button>Skincare</button>
+
+            </section>
+
+            <!--=====================
+            PRODUCT GRID
+        ======================-->
+
+
+            <section class="shop-toolbar">
+
+                <div class="shop-toolbar-left">
+
+                    <div class="shop-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input id="productSearch" type="search" placeholder="Search makeup, brand or product..."
+                            autocomplete="off">
+                    </div>
+
+                    <button class="clear-search" type="button" id="clearSearch">
+                        Clear
+                    </button>
+
+                </div>
+
+                <div class="shop-toolbar-right">
+
+                    <select class="shop-select" id="sortProducts" aria-label="Sort products">
+
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Customer Rating</option>
+                        <option value="name">Product Name</option>
+
+                    </select>
+
+                </div>
+
+            </section>
+
+            <p class="category-count" id="productCount">
+                Loading products...
+            </p>
+
+            <section class="ecom-product-grid" id="productGrid" aria-live="polite">
+            </section>
+
+
+            <!--=====================
+                                        PART 3 STARTS HERE
+                                    =====================-->
+            <!--=====================
+                                                      AI RECOMMENDATION SUMMARY
+                                                    ======================-->
+
+            <section class="summary-section">
+
+                <div class="summary-card">
+
+                    <div class="summary-icon">
+
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                    </div>
+
+                    <div class="summary-content">
+
+                        <h2>AI Recommendation Summary</h2>
+
+                        <p>
+
+                            Based on your facial analysis, your face shape is
+                            <strong>Oval</strong> with a
+                            <strong>Warm Skin Tone</strong>.
+                            Neutral earthy shades, peach blush, brown eye makeup,
+                            and nude pink lipsticks will complement your natural
+                            features and provide a balanced everyday look.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!--=====================
+                                                      MAKEUP ROUTINE
+                                                    ======================-->
+
+            <section class="routine-section">
+
+                <h2>Recommended Makeup Routine</h2>
+
+                <div class="routine-grid">
+
+                    <div class="routine-card">
+
+                        <i class="fa-solid fa-pump-soap"></i>
+
+                        <h3>Step 1</h3>
+
+                        <p>
+
+                            Cleanse and moisturize your face before applying makeup.
+
+                        </p>
+
+                    </div>
+
+                    <div class="routine-card">
+
+                        <i class="fa-solid fa-droplet"></i>
+
+                        <h3>Step 2</h3>
+
+                        <p>
+
+                            Apply primer and Warm Beige Foundation evenly.
+
+                        </p>
+
+                    </div>
+
+                    <div class="routine-card">
+
+                        <i class="fa-solid fa-face-smile"></i>
+
+                        <h3>Step 3</h3>
+
+                        <p>
+
+                            Add Soft Peach Blush to highlight your cheekbones.
+
+                        </p>
+
+                    </div>
+
+                    <div class="routine-card">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                        <h3>Step 4</h3>
+
+                        <p>
+
+                            Apply Brown Smokey Eye makeup for a premium finish.
+
+                        </p>
+
+                    </div>
+
+                    <div class="routine-card">
+
+                        <i class="fa-solid fa-heart"></i>
+
+                        <h3>Step 5</h3>
+
+                        <p>
+
+                            Finish with Rose Pink Lipstick for a natural look.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!--=====================
+                                                        BEAUTY TIPS
+                                                    ======================-->
+
+            <section class="tips-section">
+
+                <h2>Professional Beauty Tips</h2>
+
+                <div class="tips-grid">
+
+                    <div class="tip-card">
+
+                        <i class="fa-solid fa-sun"></i>
+
+                        <p>
+
+                            Always apply sunscreen before makeup to protect your skin.
+
+                        </p>
+
+                    </div>
+
+                    <div class="tip-card">
+
+                        <i class="fa-solid fa-glass-water"></i>
+
+                        <p>
+
+                            Drink plenty of water to keep your skin hydrated and glowing.
+
+                        </p>
+
+                    </div>
+
+                    <div class="tip-card">
+
+                        <i class="fa-solid fa-bed"></i>
+
+                        <p>
+
+                            Sleep at least 7–8 hours every night for healthy skin.
+
+                        </p>
+
+                    </div>
+
+                    <div class="tip-card">
+
+                        <i class="fa-solid fa-leaf"></i>
+
+                        <p>
+
+                            Use gentle skincare products suitable for your skin type.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!--=====================
+                                                        CTA SECTION
+                                                    ======================-->
+
+            <section class="cta-section">
+
+                <h2>Ready for Another AI Analysis?</h2>
+
+                <p>
+
+                    Upload another photo anytime and receive fresh personalized
+                    makeup recommendations powered by AI.
+
+                </p>
+
+                <a href="analysis.html" class="cta-btn">
+
+                    Analyze Another Photo
+
+                </a>
+
+            </section>
+
+            <!--=====================
+                                                        PART 4 STARTS HERE
+                                                    ======================-->
+            <!--=====================
+                                                                            FOOTER
+                                                                    ======================-->
+
+            <footer class="dashboard-footer">
+
+                <div class="footer-left">
+
+                    <h3>AI Makeup Analysis Guide</h3>
+
+                    <p>
+
+                        Discover personalized beauty recommendations powered by
+                        Artificial Intelligence. Analyze your face, explore
+                        premium makeup products, and enhance your beauty
+                        confidently.
+
+                    </p>
+
+                    <p class="copyright">
+
+                        © 2026 AI Makeup Analysis Guide. All Rights Reserved.
+
+                    </p>
+
+                </div>
+
+                <div class="footer-right">
+
+                    <a href="#" aria-label="Facebook">
+
+                        <i class="fa-brands fa-facebook-f"></i>
+
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                    </a>
+
+                    <a href="#" aria-label="LinkedIn">
+
+                        <i class="fa-brands fa-linkedin-in"></i>
+
+                    </a>
+
+                    <a href="#" aria-label="GitHub">
+
+                        <i class="fa-brands fa-github"></i>
+
+                    </a>
+
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!--=====================
+                                                                    JAVASCRIPT
+                                                            ======================-->
+
+
+    <!-- =========================================================
+     SHOPPING CART DRAWER
+     ========================================================= -->
+
+    <div class="shop-cart-overlay" id="cartOverlay">
+    </div>
+
+    <aside class="shop-cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+
+        <div class="shop-cart-head">
+
+            <div>
+                <h2>
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    Shopping Cart
+                </h2>
+
+                <small id="cartItemsLabel">0 items</small>
+            </div>
+
+            <button class="shop-cart-close" type="button" id="closeCart" aria-label="Close cart">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <div class="shop-cart-items" id="cartItems">
+        </div>
+
+        <div class="shop-cart-footer">
+
+            <div class="shop-cart-total">
+                <span>Subtotal</span>
+                <strong id="cartSubtotal">₹0</strong>
+            </div>
+
+            <button class="shop-checkout" type="button" id="checkoutButton">
+
+                Proceed to Checkout
+
+            </button>
+
+        </div>
+
+    </aside>
+
+    <div class="shop-toast" id="shopToast">
+    </div>
+
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+
+    <script src="assets/js/recommendation.js"></script>
+</body>
+
+</html>

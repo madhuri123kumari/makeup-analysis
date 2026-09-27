@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Face Analysis | AI Makeup Analysis Guide</title>
+
+    <!-- Google Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="assets/css/analysis.css">
+
+</head>
+
+<body>
+
+    <div class="analysis-page">
+
+        <!--==========================
+            SIDEBAR
+    ===========================-->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                <div>
+
+                    <h2>AI Makeup</h2>
+
+                    <span>Analysis Guide</span>
+
+                </div>
+
+            </div>
+
+            <ul class="menu">
+
+                <li>
+
+                    <a href="dashboard.html">
+
+                        <i class="fa-solid fa-house"></i>
+
+                        Dashboard
+
+                    </a>
+
+                </li>
+
+                <li class="active">
+
+                    <a href="analysis.html">
+
+                        <i class="fa-solid fa-camera"></i>
+
+                        AI Analysis
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="recommendation.html">
+
+                        <i class="fa-solid fa-palette"></i>
+
+                        Recommendation
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="history.html">
+
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+
+                        History
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="profile.html">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        Profile
+
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="settings.html">
+
+                        <i class="fa-solid fa-gear"></i>
+
+                        Settings
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </aside>
+
+        <!--==========================
+            MAIN CONTENT
+    ===========================-->
+
+        <main class="main-content">
+
+            <!--======================
+                TOPBAR
+        =======================-->
+
+            <header class="topbar">
+
+                <div class="title-area">
+
+                    <h1>
+
+                        AI Face Analysis
+
+                    </h1>
+
+                    <p>
+
+                        Smart AI Skin Detection & Personalized Makeup Recommendation
+
+                    </p>
+
+                </div>
+
+                <div class="topbar-right">
+
+                    <button class="circle-btn" type="button" title="Notifications" aria-label="Notifications">
+                    
+                        <i class="fa-solid fa-bell" aria-hidden="true"></i>
+                    
+                    </button>
+                    
+                    <button class="circle-btn" type="button" title="Dark Mode" aria-label="Dark Mode">
+                    
+                        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                    
+                    </button>
+
+                    <div class="profile-box">
+
+                        <img src="assets/images/profile.jpg" alt="Profile">
+
+                        <div>
+
+                            <h4>Madhuri</h4>
+
+                            <span>Premium User</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+            <!--======================
+              HERO SECTION
+        =======================-->
+
+            <section class="hero-section">
+
+                <div class="hero-left">
+
+                    <span class="badge">
+
+                        AI Powered Face Scanner
+
+                    </span>
+
+                    <h2>
+
+                        Analyze Your Face Using Artificial Intelligence
+
+                    </h2>
+
+                    <p>
+
+                        Upload your selfie and receive an instant AI report
+                        including skin type, skin tone, face shape,
+                        beauty score and personalized makeup suggestions.
+
+                    </p>
+
+                    <button class="hero-btn">
+
+                        <i class="fa-solid fa-camera"></i>
+
+                        Start Analysis
+
+                    </button>
+
+                </div>
+
+                <div class="hero-right">
+
+                    <div class="hero-circle">
+
+                        <i class="fa-solid fa-brain"></i>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!--======================
+             UPLOAD SECTION
+        =======================-->
+
+            <section class="upload-section">
+
+                <div class="upload-card">
+
+                    <div class="card-title">
+
+                        <h2>
+
+                            Upload Image
+
+                        </h2>
+
+                        <p>
+
+                            JPG • PNG • JPEG • Maximum 10 MB
+
+                        </p>
+
+                    </div>
+
+                    <div class="upload-area" id="dropArea">
+
+                        <input type="file" id="imageInput" accept="image/*" hidden>
+
+                        <div class="upload-content">
+
+                            <div class="upload-icon">
+
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                            </div>
+
+                            <h3>
+
+                                Drag & Drop Image
+
+                            </h3>
+
+                            <p>
+
+                                Upload a clear front face image
+
+                            </p>
+
+                            <button id="browseBtn">
+
+                                Browse Image
+
+                            </button>
+
+                            <button id="cameraBtn">
+
+                                Open Camera
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="preview-card">
+
+                    <div class="card-title">
+
+                        <h2>
+
+                            Live Preview
+
+                        </h2>
+
+                        <p>
+
+                            AI will scan your uploaded image
+
+                        </p>
+
+                    </div>
+
+                    <div class="preview-box">
+
+                        <img id="previewImage" src="assets/images/image-placeholder.png" alt="Preview">
+
+                        <div class="scanner-line"></div>
+
+                    </div>
+
+                    <div class="preview-actions">
+
+                        <button id="removeImage">
+
+                            Remove
+
+                        </button>
+
+                        <button id="analyzeBtn">
+
+                            Analyze Face
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+                    <!--======================
+                                AI PROCESSING
+                            =======================-->
+                    
+                    <section class="processing-section">
+                    
+                        <div class="processing-header">
+                    
+                            <h2>
+                    
+                                AI Processing
+                    
+                            </h2>
+                    
+                            <span id="processingStatus">
+                    
+                                Waiting for Image...
+                    
+                            </span>
+                    
+                        </div>
+                    
+                        <div class="progress-bar">
+                    
+                            <div id="progressFill" class="progress-fill">
+                    
+                            </div>
+                    
+                        </div>
+                    
+                        <p id="progressText">
+                    
+                            Artificial Intelligence is ready.
+                    
+                        </p>
+                    
+                        <div class="processing-grid">
+                    
+                            <div class="process-card">
+                    
+                                <i class="fa-solid fa-face-smile"></i>
+                    
+                                <h4>Face Detection</h4>
+                    
+                            </div>
+                    
+                            <div class="process-card">
+                    
+                                <i class="fa-solid fa-droplet"></i>
+                    
+                                <h4>Skin Analysis</h4>
+                    
+                            </div>
+                    
+                            <div class="process-card">
+                    
+                                <i class="fa-solid fa-chart-line"></i>
+                    
+                                <h4>Beauty Score</h4>
+                    
+                            </div>
+                    
+                            <div class="process-card">
+                    
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    
+                                <h4>AI Recommendation</h4>
+                    
+                            </div>
+                    
+                        </div>
+                    
+                    </section>
+                    
+                    <!--======================
+                                 ANALYSIS REPORT
+                            =======================-->
+                    
+                    <section class="result-section">
+                    
+                        <div class="section-title">
+                    
+                            <h2>
+                    
+                                AI Analysis Report
+                    
+                            </h2>
+                    
+                            <p>
+                    
+                                Detailed report generated after AI analysis.
+                    
+                            </p>
+                    
+                        </div>
+                    
+                        <div class="result-container">
+                    
+                            <div class="score-card">
+                    
+                                <div class="score-circle">
+                    
+                                    <svg>
+                    
+                                        <circle cx="90" cy="90" r="75">
+                    
+                                        </circle>
+                    
+                                        <circle id="progressCircle" cx="90" cy="90" r="75">
+                    
+                                        </circle>
+                    
+                                    </svg>
+                    
+                                    <div class="score-text">
+                    
+                                        <h2 id="beautyScore">
+                    
+                                            0%
+                    
+                                        </h2>
+                    
+                                        <span>
+                    
+                                            Beauty Score
+                    
+                                        </span>
+                    
+                                    </div>
+                    
+                                </div>
+                    
+                            </div>
+                    
+                            <div class="report-card">
+                    
+                                <div class="report-item">
+                    
+                                    <span>Skin Type</span>
+                    
+                                    <strong id="skinType">
+                    
+                                        --
+                    
+                                    </strong>
+                    
+                                </div>
+                    
+                                <div class="report-item">
+                    
+                                    <span>Skin Tone</span>
+                    
+                                    <strong id="skinTone">
+                    
+                                        --
+                    
+                                    </strong>
+                    
+                                </div>
+                    
+                                <div class="report-item">
+                    
+                                    <span>Face Shape</span>
+                    
+                                    <strong id="faceShape">
+                    
+                                        --
+                    
+                                    </strong>
+                    
+                                </div>
+                    
+                                <div class="report-item">
+                    
+                                    <span>Acne Level</span>
+                    
+                                    <strong id="acneStatus">
+                    
+                                        --
+                    
+                                    </strong>
+                    
+                                </div>
+                    
+                                <div class="report-item">
+                    
+                                    <span>Dark Circle</span>
+                    
+                                    <strong id="darkCircle">
+                    
+                                        --
+                    
+                                    </strong>
+                    
+                                </div>
+                    
+                                <div class="report-item">
+                    
+                                    <span>Confidence</span>
+                    
+                                    <strong id="confidence">
+                    
+                                        --
+                    
+                                    </strong>
+                    
+                                </div>
+                    
+                            </div>
+                    
+                        </div>
+                    
+                    </section>
+                            <!--======================
+                                    RECOMMENDED PRODUCTS
+                                    =======================-->
+                            
+                            <section class="recommendation-section">
+                            
+                                <div class="section-title">
+                            
+                                    <h2>
+                            
+                                        Recommended Products
+                            
+                                    </h2>
+                            
+                                    <p>
+                            
+                                        AI selected products based on your skin analysis.
+                            
+                                    </p>
+                            
+                                </div>
+                            
+                                <div class="product-grid">
+                            
+                                    <div class="product-card">
+                            
+                                        <div class="product-icon">
+                            
+                                            <i class="fa-solid fa-palette"></i>
+                            
+                                        </div>
+                            
+                                        <h3>
+                            
+                                            Foundation
+                            
+                                        </h3>
+                            
+                                        <p>
+                            
+                                            Maybelline Fit Me Matte + Poreless
+                            
+                                        </p>
+                            
+                                    </div>
+                            
+                                    <div class="product-card">
+                            
+                                        <div class="product-icon">
+                            
+                                            <i class="fa-solid fa-brush"></i>
+                            
+                                        </div>
+                            
+                                        <h3>
+                            
+                                            Concealer
+                            
+                                        </h3>
+                            
+                                        <p>
+                            
+                                            L.A Girl Pro Conceal HD
+                            
+                                        </p>
+                            
+                                    </div>
+                            
+                                    <div class="product-card">
+                            
+                                        <div class="product-icon">
+                            
+                                            <i class="fa-solid fa-heart"></i>
+                            
+                                        </div>
+                            
+                                        <h3>
+                            
+                                            Lipstick
+                            
+                                        </h3>
+                            
+                                        <p>
+                            
+                                            MAC Velvet Teddy
+                            
+                                        </p>
+                            
+                                    </div>
+                            
+                                    <div class="product-card">
+                            
+                                        <div class="product-icon">
+                            
+                                            <i class="fa-solid fa-sun"></i>
+                            
+                                        </div>
+                            
+                                        <h3>
+                            
+                                            Sunscreen
+                            
+                                        </h3>
+                            
+                                        <p>
+                            
+                                            La Roche Posay SPF 50+
+                            
+                                        </p>
+                            
+                                    </div>
+                            
+                                    <div class="product-card">
+                            
+                                        <div class="product-icon">
+                            
+                                            <i class="fa-solid fa-droplet"></i>
+                            
+                                        </div>
+                            
+                                        <h3>
+                            
+                                            Moisturizer
+                            
+                                        </h3>
+                            
+                                        <p>
+                            
+                                            CeraVe Moisturizing Lotion
+                            
+                                        </p>
+                            
+                                    </div>
+                            
+                                    <div class="product-card">
+                            
+                                        <div class="product-icon">
+                            
+                                            <i class="fa-solid fa-spray-can-sparkles"></i>
+                            
+                                        </div>
+                            
+                                        <h3>
+                            
+                                            Setting Spray
+                            
+                                        </h3>
+                            
+                                        <p>
+                            
+                                            MAC Fix+ Setting Spray
+                            
+                                        </p>
+                            
+                                    </div>
+                            
+                                </div>
+                            
+                            </section>
+                            
+                            <!--======================
+                                        ACTION BUTTONS
+                                    =======================-->
+                            
+                            <section class="action-section">
+                            
+                                <button class="download-btn">
+                            
+                                    <i class="fa-solid fa-file-pdf"></i>
+                            
+                                    Download Report
+                            
+                                </button>
+                            
+                                <button class="save-btn">
+                            
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                            
+                                    Save Report
+                            
+                                </button>
+                            
+                                <button class="share-btn">
+                            
+                                    <i class="fa-solid fa-share-nodes"></i>
+                            
+                                    Share
+                            
+                                </button>
+                            
+                                <button class="again-btn">
+                            
+                                    <i class="fa-solid fa-rotate-right"></i>
+                            
+                                    Analyze Again
+                            
+                                </button>
+                            
+                            </section>
+                            
+                            </main>
+                            
+                            </div>
+                            
+                            <script src="assets/js/analysis.js"></script>
+                            
+                            </body>
+                            
+                            </html>
