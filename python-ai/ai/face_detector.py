@@ -24,22 +24,59 @@ if os.name != "nt":
     os.environ["HOME"] = "/tmp"
     os.environ["USERPROFILE"] = "/tmp"
 
-INSIGHTFACE_ROOT = Path("/tmp/.insightface")
-MPL_CONFIG_DIR = Path("/tmp/matplotlib")
-XDG_CACHE_DIR = Path("/tmp/.cache")
+INSIGHTFACE_ROOT = Path(
+    os.getenv(
+        "INSIGHTFACE_ROOT",
+        "/tmp/.insightface",
+    )
+)
 
-INSIGHTFACE_ROOT.mkdir(parents=True, exist_ok=True)
-MPL_CONFIG_DIR.mkdir(parents=True, exist_ok=True)
-XDG_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+MPL_CONFIG_DIR = Path(
+    os.getenv(
+        "MPLCONFIGDIR",
+        "/tmp/matplotlib",
+    )
+)
+
+XDG_CACHE_DIR = Path(
+    os.getenv(
+        "XDG_CACHE_HOME",
+        "/tmp/.cache",
+    )
+)
+
+INSIGHTFACE_ROOT.mkdir(
+    parents=True,
+    exist_ok=True,
+)
+
+MPL_CONFIG_DIR.mkdir(
+    parents=True,
+    exist_ok=True,
+)
+
+XDG_CACHE_DIR.mkdir(
+    parents=True,
+    exist_ok=True,
+)
 
 os.environ["MPLCONFIGDIR"] = str(MPL_CONFIG_DIR)
 os.environ["XDG_CACHE_HOME"] = str(XDG_CACHE_DIR)
 
 
+# ============================================================
+# Third-party imports
+# ============================================================
+
 import cv2
 from insightface.app import FaceAnalysis
 
 from config import LOGGER, ai_config
+
+
+# ============================================================
+# Face Detector
+# ============================================================
 
 
 class FaceDetector:
@@ -79,7 +116,10 @@ class FaceDetector:
 
                 model = FaceAnalysis(
                     name=ai_config.model_name,
-                    root=str(INSIGHTFACE_ROOT),
+                    root=os.environ.get(
+                        "INSIGHTFACE_ROOT",
+                        "/app/python-ai/.insightface",
+                    ),
                     providers=list(ai_config.providers),
                     allowed_modules=[
                         "detection",
@@ -209,8 +249,14 @@ class FaceDetector:
             },
             "landmarks": [
                 {
-                    "x": round(float(point[0]), 2),
-                    "y": round(float(point[1]), 2),
+                    "x": round(
+                        float(point[0]),
+                        2,
+                    ),
+                    "y": round(
+                        float(point[1]),
+                        2,
+                    ),
                 }
                 for point in landmarks
             ],
