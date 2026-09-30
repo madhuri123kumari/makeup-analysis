@@ -303,8 +303,8 @@ def generate_product_image():
                 "cached": True,
                 "image_url": (f"/assets/images/generated_products/{key}.jpg"),
                 "visual_type": ("AI_GENERATED_CONCEPT"),
-                "provider": ("Pollinations.AI"),
-                "model": (POLLINATIONS_MODEL),
+                "provider": "Pollinations.AI",
+                "model": POLLINATIONS_MODEL,
             }
         ), 200
 
@@ -363,14 +363,17 @@ def generate_product_image():
         # CHECK RESPONSE
         # -------------------------------------------------
 
-        content_type = response.headers.get("Content-Type", "").lower()
+        content_type = response.headers.get(
+            "Content-Type",
+            "",
+        ).lower()
 
         if not content_type.startswith("image/"):
             return jsonify(
                 {
                     "success": False,
                     "error": ("Pollinations did not return an image."),
-                    "content_type": (content_type),
+                    "content_type": content_type,
                     "details": (response.text[:1000]),
                 }
             ), 502
@@ -391,8 +394,8 @@ def generate_product_image():
                 "cached": False,
                 "image_url": (f"/assets/images/generated_products/{key}.jpg"),
                 "visual_type": ("AI_GENERATED_CONCEPT"),
-                "provider": ("Pollinations.AI"),
-                "model": (POLLINATIONS_MODEL),
+                "provider": "Pollinations.AI",
+                "model": POLLINATIONS_MODEL,
             }
         ), 200
 
@@ -401,18 +404,13 @@ def generate_product_image():
     # -----------------------------------------------------
 
     except requests.HTTPError as exc:
-        details = ""
-
-        try:
-            details = response.text[:1500]
-        except Exception:
-            pass
+        details = response.text[:1500]
 
         return jsonify(
             {
                 "success": False,
                 "error": ("Pollinations AI image generation failed."),
-                "details": (details or str(exc)),
+                "details": details or str(exc),
             }
         ), 502
 
@@ -430,10 +428,10 @@ def generate_product_image():
         ), 502
 
     # -----------------------------------------------------
-    # OTHER ERROR
+    # UNEXPECTED ERROR
     # -----------------------------------------------------
 
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001
         return jsonify(
             {
                 "success": False,

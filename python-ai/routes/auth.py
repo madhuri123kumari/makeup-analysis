@@ -176,7 +176,7 @@ def signup():
     except sqlite3.IntegrityError:
         return error("An account with this email already exists.", 409)
 
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001
         print("SIGNUP ERROR:", exc)
 
         return error("Unable to create account right now.", 500)
@@ -253,7 +253,7 @@ def login():
 
         return success("Login successful.", token=token, user=user_data)
 
-    except Exception as exc:
+    except Exception as exc:  # noqa: BLE001
         print("LOGIN ERROR:", exc)
 
         return error("Unable to login right now.", 500)

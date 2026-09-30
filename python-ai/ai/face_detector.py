@@ -2,16 +2,24 @@
 AI Makeup Analysis Guide
 Professional Face Detector
 
-Python 3.12+
 InsightFace + OpenCV
+CPU optimized for low-memory deployment.
 """
 
 from __future__ import annotations
 
+import gc
+import os
 from pathlib import Path
 from threading import Lock
 from time import perf_counter
 from typing import Any
+
+# Writable temporary cache directory for cloud deployment.
+# This prevents libraries such as Matplotlib from trying
+# to create cache files inside the read-only root directory.
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/matplotlib")
+os.environ.setdefault("XDG_CACHE_HOME", "/tmp/.cache")
 
 import cv2
 from insightface.app import FaceAnalysis
@@ -23,9 +31,13 @@ class FaceDetector:
     """
     Production face detection service using InsightFace.
 
-    Important:
-    - InsightFace objects NEVER leave this class.
-    - API responses contain JSON-safe dictionaries only.
+    Uses:
+    - InsightFace buffalo_s model
+    - CPU execution
+    - 2D face landmarks
+    - JSON-safe API output
+
+    Raw InsightFace objects are kept internal.
     """
 
     _model: FaceAnalysis | None = None
@@ -36,13 +48,28 @@ class FaceDetector:
 
     @classmethod
     def _load_model(cls) -> FaceAnalysis:
+        """
+        Load the InsightFace model only once.
+
+        Only the modules required for face detection and
+        2D landmarks are loaded to reduce memory usage.
+        """
+
         with cls._lock:
             if cls._model is None:
-                LOGGER.info("Loading InsightFace model...")
+                LOGGER.info(
+                    "Loading InsightFace model: %s",
+                    ai_config.model_name,
+                )
 
                 model = FaceAnalysis(
                     name=ai_config.model_name,
+                    root="/tmp/.insightface",
                     providers=list(ai_config.providers),
+                    allowed_modules=[
+                        "detection",
+                        "landmark_2d_106",
+                    ],
                 )
 
                 model.prepare(
@@ -57,6 +84,12 @@ class FaceDetector:
         return cls._model
 
     def detect(self, image_path: str | Path) -> dict[str, Any]:
+        """
+        Detect faces from an image.
+
+        Returns only JSON-safe information to the Flask API.
+        """
+
         start = perf_counter()
 
         image = self._load_image(image_path)
@@ -91,18 +124,23 @@ class FaceDetector:
             "message": (
                 "Face detected successfully."
                 if faces
-                else "No face detected. Please upload a clear front-facing photo."
+                else ("No face detected. Please upload a clear front-facing photo.")
             ),
             "processing_time_ms": elapsed,
             "total_faces": len(faces),
             "faces": faces,
-            # Internal use only.
-            # Never return raw InsightFace objects to Flask.
+            # Internal use by the analysis service.
+            # These objects must not be sent directly
+            # through Flask's JSON response.
             "_raw_faces": valid_faces,
         }
 
     @staticmethod
     def _load_image(image_path: str | Path) -> Any:
+        """
+        Load and validate an image using OpenCV.
+        """
+
         path = Path(image_path)
 
         if not path.exists():
@@ -123,6 +161,11 @@ class FaceDetector:
         index: int,
         face: Any,
     ) -> dict[str, Any]:
+        """
+        Convert an InsightFace face object into
+        JSON-safe data.
+        """
+
         bbox = face.bbox
         landmarks = face.kps
 
@@ -133,10 +176,10 @@ class FaceDetector:
                 4,
             ),
             "bounding_box": {
-                "x1": int(round(float(bbox[0]))),
-                "y1": int(round(float(bbox[1]))),
-                "x2": int(round(float(bbox[2]))),
-                "y2": int(round(float(bbox[3]))),
+                "x1": round(float(bbox[0])),
+                "y1": round(float(bbox[1])),
+                "x2": round(float(bbox[2])),
+                "y2": round(float(bbox[3])),
             },
             "landmarks": [
                 {
@@ -148,16 +191,29 @@ class FaceDetector:
         }
 
     def health(self) -> dict[str, Any]:
+        """
+        Return the current detector health status.
+        """
+
         return {
             "service": "FaceDetector",
             "status": "ready",
             "model_loaded": self._model is not None,
             "model": ai_config.model_name,
             "provider": list(ai_config.providers),
+            "detection_size": list(ai_config.detection_size),
+            "detection_threshold": (ai_config.detection_threshold),
         }
 
     @classmethod
     def unload_model(cls) -> None:
+        """
+        Release the InsightFace model reference
+        and request Python garbage collection.
+        """
+
         with cls._lock:
             cls._model = None
+            gc.collect()
+
             LOGGER.info("InsightFace model released.")

@@ -83,10 +83,10 @@ class AIConfig:
 ai_config = AIConfig(
     model_name=os.getenv(
         "AI_MODEL_NAME",
-        "buffalo_l",
+        "buffalo_s",
     ),
     providers=("CPUExecutionProvider",),
-    detection_size=(640, 640),
+    detection_size=(512, 512),
     detection_threshold=0.50,
 )
 

@@ -120,9 +120,7 @@ def analyze():
                 "success": False,
                 "message": str(exc),
             }
-        ), 422
-
-    except Exception as exc:
+        )
         LOGGER.exception(
             "AI analysis failed: %s",
             exc,

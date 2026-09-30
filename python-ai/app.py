@@ -62,9 +62,8 @@ def success_response(
     status_code: int = 200,
     **extra: Any,
 ):
-    """
-    Return a consistent successful JSON response.
-    """
+    """Return a consistent successful JSON response."""
+
     payload = {
         "success": True,
         "message": message,
@@ -79,9 +78,8 @@ def error_response(
     status_code: int,
     **extra: Any,
 ):
-    """
-    Return a consistent JSON error response.
-    """
+    """Return a consistent error JSON response."""
+
     payload = {
         "success": False,
         "message": message,
@@ -97,15 +95,12 @@ def error_response(
 
 
 def register_frontend_routes(app: Flask) -> None:
-    """
-    Register dashboard and frontend asset routes.
-    """
+    """Register dashboard and frontend asset routes."""
 
     @app.get("/")
     def home():
-        """
-        Root API information endpoint.
-        """
+        """Return backend API information."""
+
         return success_response(
             "AI Makeup Analysis Guide API is running.",
             application=PROJECT_NAME,
@@ -126,9 +121,8 @@ def register_frontend_routes(app: Flask) -> None:
 
     @app.get("/health")
     def health():
-        """
-        General backend health endpoint.
-        """
+        """Return general backend health status."""
+
         return success_response(
             "Backend is healthy.",
             service=PROJECT_NAME,
@@ -138,9 +132,7 @@ def register_frontend_routes(app: Flask) -> None:
 
     @app.get("/dashboard.html")
     def dashboard():
-        """
-        Serve the dashboard HTML page.
-        """
+        """Serve the dashboard HTML page."""
 
         if not DASHBOARD_FILE.is_file():
             LOGGER.error(
@@ -161,9 +153,7 @@ def register_frontend_routes(app: Flask) -> None:
 
     @app.get("/assets/<path:filename>")
     def frontend_assets(filename: str):
-        """
-        Serve frontend assets.
-        """
+        """Serve frontend assets."""
 
         if not ASSETS_DIR.is_dir():
             LOGGER.error(
@@ -191,28 +181,16 @@ def register_blueprints(app: Flask) -> None:
     """
     Register all application API blueprints.
 
-    Registered APIs:
-
-        /api/analysis
-        /api/auth
-        /api/analysis/product-image
+    APIs:
+    - /api/analysis
+    - /api/auth
+    - /api/analysis/product-image
     """
 
     try:
-        # --------------------------------------------------------
-        # AI Analysis API
-        # --------------------------------------------------------
         from routes.analysis import analysis_bp
-
-        # --------------------------------------------------------
-        # Product Image API
-        # --------------------------------------------------------
-        from routes.product_image import product_image_bp
-
-        # --------------------------------------------------------
-        # Authentication API
-        # --------------------------------------------------------
         from routes.auth import auth_bp
+        from routes.product_image import product_image_bp
 
     except ImportError:
         LOGGER.exception("Unable to import required API blueprints.")
@@ -233,12 +211,6 @@ def register_blueprints(app: Flask) -> None:
     # PRODUCT IMAGE BLUEPRINT
     # ============================================================
 
-    # product_image.py already defines the complete route:
-    #
-    # /api/analysis/product-image
-    #
-    # Therefore, no additional url_prefix is added here.
-
     app.register_blueprint(product_image_bp)
 
     LOGGER.info("Product image blueprint registered at /api/analysis/product-image")
@@ -246,18 +218,6 @@ def register_blueprints(app: Flask) -> None:
     # ============================================================
     # AUTHENTICATION BLUEPRINT
     # ============================================================
-
-    # routes/auth.py defines:
-    #
-    # POST /signup
-    # POST /login
-    # GET  /health
-    #
-    # Applying this prefix produces:
-    #
-    # POST /api/auth/signup
-    # POST /api/auth/login
-    # GET  /api/auth/health
 
     app.register_blueprint(
         auth_bp,
@@ -273,9 +233,7 @@ def register_blueprints(app: Flask) -> None:
 
 
 def register_error_handlers(app: Flask) -> None:
-    """
-    Register consistent JSON error responses.
-    """
+    """Register consistent JSON error responses."""
 
     @app.errorhandler(400)
     def bad_request(error: Exception):
@@ -356,9 +314,7 @@ def register_error_handlers(app: Flask) -> None:
 
 
 def create_app() -> Flask:
-    """
-    Create and configure the Flask application.
-    """
+    """Create and configure the Flask application."""
 
     app = Flask(
         __name__,
@@ -368,9 +324,6 @@ def create_app() -> Flask:
     # ============================================================
     # CORS
     # ============================================================
-
-    # The frontend can be opened directly from the project folder
-    # or served independently by VS Code Live Server.
 
     CORS(
         app,
@@ -405,9 +358,7 @@ def create_app() -> Flask:
     # ============================================================
 
     register_frontend_routes(app)
-
     register_blueprints(app)
-
     register_error_handlers(app)
 
     # ============================================================
@@ -469,9 +420,7 @@ app = create_app()
 
 
 def startup_banner() -> None:
-    """
-    Print a readable development startup banner.
-    """
+    """Print a readable development startup banner."""
 
     host = flask_config.host
     port = flask_config.port
@@ -518,9 +467,7 @@ Auth Health     : http://{host}:{port}/api/auth/health
 
 
 def main() -> None:
-    """
-    Start the Flask development server.
-    """
+    """Start the Flask development server."""
 
     startup_banner()
 

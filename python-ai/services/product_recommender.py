@@ -12,7 +12,8 @@ IMPORTANT:
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, ClassVar
+
 from config import LOGGER
 
 
@@ -23,7 +24,7 @@ class ProductRecommender:
     # PRODUCT CATALOG
     # ---------------------------------------------------------
 
-    CATALOG: dict[str, list[dict[str, Any]]] = {
+    CATALOG: ClassVar[dict[str, list[dict[str, Any]]]] = {
         "cleanser": [
             {
                 "name": "CeraVe Foaming Facial Cleanser",
