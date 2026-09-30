@@ -16,12 +16,25 @@ from time import perf_counter
 from typing import Any
 
 
-# Cloud/Linux writable directories
+# ============================================================
+# Writable directories for Linux / cloud deployment
+# ============================================================
+
 if os.name != "nt":
     os.environ["HOME"] = "/tmp"
+    os.environ["USERPROFILE"] = "/tmp"
 
-os.environ["MPLCONFIGDIR"] = "/tmp/matplotlib"
-os.environ["XDG_CACHE_HOME"] = "/tmp/.cache"
+INSIGHTFACE_ROOT = Path("/tmp/.insightface")
+MPL_CONFIG_DIR = Path("/tmp/matplotlib")
+XDG_CACHE_DIR = Path("/tmp/.cache")
+
+INSIGHTFACE_ROOT.mkdir(parents=True, exist_ok=True)
+MPL_CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+XDG_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+
+os.environ["MPLCONFIGDIR"] = str(MPL_CONFIG_DIR)
+os.environ["XDG_CACHE_HOME"] = str(XDG_CACHE_DIR)
+
 
 import cv2
 from insightface.app import FaceAnalysis
@@ -66,7 +79,7 @@ class FaceDetector:
 
                 model = FaceAnalysis(
                     name=ai_config.model_name,
-                    root="/tmp/.insightface",
+                    root=str(INSIGHTFACE_ROOT),
                     providers=list(ai_config.providers),
                     allowed_modules=[
                         "detection",
@@ -85,7 +98,10 @@ class FaceDetector:
 
         return cls._model
 
-    def detect(self, image_path: str | Path) -> dict[str, Any]:
+    def detect(
+        self,
+        image_path: str | Path,
+    ) -> dict[str, Any]:
         """
         Detect faces from an image.
 
@@ -95,6 +111,9 @@ class FaceDetector:
         start = perf_counter()
 
         image = self._load_image(image_path)
+
+        if self._model is None:
+            raise RuntimeError("InsightFace model is not loaded.")
 
         raw_faces = self._model.get(image)
 
@@ -107,7 +126,10 @@ class FaceDetector:
 
         faces = [
             self._serialize_face(index, face)
-            for index, face in enumerate(valid_faces, start=1)
+            for index, face in enumerate(
+                valid_faces,
+                start=1,
+            )
         ]
 
         elapsed = round(
@@ -138,7 +160,9 @@ class FaceDetector:
         }
 
     @staticmethod
-    def _load_image(image_path: str | Path) -> Any:
+    def _load_image(
+        image_path: str | Path,
+    ) -> Any:
         """
         Load and validate an image using OpenCV.
         """
@@ -204,7 +228,8 @@ class FaceDetector:
             "model": ai_config.model_name,
             "provider": list(ai_config.providers),
             "detection_size": list(ai_config.detection_size),
-            "detection_threshold": ai_config.detection_threshold,
+            "detection_threshold": (ai_config.detection_threshold),
+            "model_root": str(INSIGHTFACE_ROOT),
         }
 
     @classmethod
