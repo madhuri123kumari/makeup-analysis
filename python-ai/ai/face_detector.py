@@ -15,12 +15,12 @@ from threading import Lock
 from time import perf_counter
 from typing import Any
 
-# Writable temporary cache directory for cloud deployment.
-# This prevents libraries such as Matplotlib from trying
-# to create cache files inside the read-only root directory.
+
+if os.name != "nt":
+    os.environ.setdefault("HOME", "/tmp")
+
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/matplotlib")
 os.environ.setdefault("XDG_CACHE_HOME", "/tmp/.cache")
-
 import cv2
 from insightface.app import FaceAnalysis
 
