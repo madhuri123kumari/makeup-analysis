@@ -16,11 +16,13 @@ from time import perf_counter
 from typing import Any
 
 
+# Cloud/Linux writable directories
 if os.name != "nt":
-    os.environ.setdefault("HOME", "/tmp")
+    os.environ["HOME"] = "/tmp"
 
-os.environ.setdefault("MPLCONFIGDIR", "/tmp/matplotlib")
-os.environ.setdefault("XDG_CACHE_HOME", "/tmp/.cache")
+os.environ["MPLCONFIGDIR"] = "/tmp/matplotlib"
+os.environ["XDG_CACHE_HOME"] = "/tmp/.cache"
+
 import cv2
 from insightface.app import FaceAnalysis
 
@@ -202,7 +204,7 @@ class FaceDetector:
             "model": ai_config.model_name,
             "provider": list(ai_config.providers),
             "detection_size": list(ai_config.detection_size),
-            "detection_threshold": (ai_config.detection_threshold),
+            "detection_threshold": ai_config.detection_threshold,
         }
 
     @classmethod
